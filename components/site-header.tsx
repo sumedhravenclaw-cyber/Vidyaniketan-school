@@ -1,23 +1,90 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { navigation, type NavItem } from "@/components/nav-data";
-import { school } from "@/lib/content/school";
+import { buildNavigation, type NavItem } from "@/components/nav-data";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
+import { locales, localeNames, stripLocale, type Locale } from "@/lib/i18n/config";
+import type { SchoolProfile } from "@/lib/types";
 
 function isActive(pathname: string, item: NavItem): boolean {
-  if (item.href === "/") return pathname === "/";
-  return pathname === item.href || pathname.startsWith(item.href + "/");
+  const here = stripLocale(pathname);
+  const there = stripLocale(item.href);
+  if (there === "/") return here === "/";
+  return here === there || here.startsWith(there + "/");
 }
 
-export default function SiteHeader() {
+/**
+ * Language switcher. Keeps the visitor on the page they are already reading and
+ * remembers the choice, so the middleware does not send them back next visit.
+ */
+function LanguageSwitcher({
+  locale,
+  dict,
+  className = "",
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  className?: string;
+}) {
   const pathname = usePathname();
+  const rest = stripLocale(pathname);
+
+  function remember(next: Locale) {
+    // One year, site-wide. Read by middleware.ts on the next un-prefixed visit.
+    document.cookie = `NEXT_LOCALE=${next}; path=/; max-age=31536000; samesite=lax`;
+  }
+
+  return (
+    <div className={"flex items-center gap-1 " + className}>
+      <span className="sr-only">{dict.nav.languageLabel}</span>
+      {locales.map((l, i) => {
+        const active = l === locale;
+        return (
+          <span key={l} className="flex items-center">
+            {i > 0 ? (
+              <span aria-hidden className="mx-1 text-navy-200/50">
+                |
+              </span>
+            ) : null}
+            <Link
+              href={"/" + l + (rest === "/" ? "" : rest)}
+              hrefLang={l}
+              onClick={() => remember(l)}
+              aria-current={active ? "true" : undefined}
+              className={
+                "rounded px-1.5 py-0.5 transition-colors " +
+                (active
+                  ? "font-semibold text-gold-400"
+                  : "text-navy-100 hover:text-white")
+              }
+            >
+              {localeNames[l].native}
+            </Link>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function SiteHeader({
+  locale,
+  dict,
+  school,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  school: SchoolProfile;
+}) {
+  const pathname = usePathname();
+  const navigation = buildNavigation(locale, dict);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
-  // Close the desktop dropdown on an outside click, and everything on Escape.
   useEffect(() => {
     function onPointerDown(e: PointerEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -38,14 +105,14 @@ export default function SiteHeader() {
     };
   }, []);
 
-  // Navigating away should always close both menus.
   useEffect(() => {
     setOpenMenu(null);
     setMobileOpen(false);
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-sand-200 bg-sand-50/95 backdrop-blur">
+    <header className="sticky top-0 z-40 bg-sand-50/95 backdrop-blur">
+      {/* Utility bar — the crest's navy, with its gold on the motto. */}
       <div className="on-navy bg-navy-800 text-navy-100">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 text-[13px]">
           <p className="flex items-center gap-2">
@@ -56,36 +123,37 @@ export default function SiteHeader() {
           </p>
           <div className="flex items-center gap-x-5">
             <a
-              className="hover:text-white"
+              className="hidden hover:text-white sm:inline"
               href={"tel:" + school.primaryPhone.replace(/\s/g, "")}
             >
               {school.primaryPhone}
             </a>
-            {/* The old site linked this without mailto:, sending visitors to gmail.com. */}
-            <a
-              className="hidden hover:text-white sm:inline"
-              href={"mailto:" + school.email}
-            >
-              {school.email}
-            </a>
+            <LanguageSwitcher locale={locale} dict={dict} />
           </div>
         </div>
       </div>
 
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
-          <span
+        <Link href={"/" + locale} className="flex items-center gap-3">
+          {/* Square crest, seal centred: a circular mask trims the white
+              corners exactly to the ring, and a gold hairline picks up the
+              laurel inside it. */}
+          <Image
+            src="/logo.jpg"
+            alt=""
             aria-hidden
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-vermilion-500 font-display text-lg font-semibold text-white"
-          >
-            CUV
-          </span>
+            width={112}
+            height={112}
+            priority
+            className="h-12 w-12 shrink-0 rounded-full ring-2 ring-gold-500/50 sm:h-14 sm:w-14"
+          />
           <span className="leading-tight">
             <span className="block font-display text-base font-semibold text-navy-800 sm:text-lg">
               {school.name}
             </span>
             <span className="block text-xs text-ink-500">
-              CBSE Affiliation No. {school.affiliationNo} &middot; Chikhli, Buldhana
+              {dict.common.affiliationNo} {school.affiliationNo} &middot;{" "}
+              {school.address.city}, {school.address.district}
             </span>
           </span>
         </Link>
@@ -97,10 +165,10 @@ export default function SiteHeader() {
           aria-controls="mobile-nav"
           className="rounded border border-sand-200 px-3 py-2 text-sm font-medium text-navy-800 lg:hidden"
         >
-          {mobileOpen ? "Close" : "Menu"}
+          {mobileOpen ? dict.nav.close : dict.nav.menu}
         </button>
 
-        <nav ref={navRef} aria-label="Main" className="hidden lg:block">
+        <nav ref={navRef} aria-label={dict.nav.mainNavLabel} className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {navigation.map((item) => {
               const active = isActive(pathname, item);
@@ -143,14 +211,16 @@ export default function SiteHeader() {
                     </span>
                   </button>
                   {open ? (
-                    <ul className="absolute left-0 top-full z-50 min-w-64 rounded-md border border-sand-200 bg-white py-2 shadow-lg">
+                    <ul className="absolute left-0 top-full z-50 min-w-64 overflow-hidden rounded-md border border-sand-200 bg-white shadow-lg">
+                      {/* Gold cap ties the dropdown back to the crest. */}
+                      <li aria-hidden className="h-0.5 bg-gold-500" />
                       {item.children.map((child) => (
                         <li key={child.href}>
                           <Link
                             href={child.href}
                             className={
                               "block px-4 py-2 text-sm transition-colors hover:bg-sand-100 " +
-                              (pathname === child.href
+                              (stripLocale(pathname) === stripLocale(child.href)
                                 ? "font-medium text-vermilion-600"
                                 : "text-ink-600")
                             }
@@ -171,7 +241,7 @@ export default function SiteHeader() {
       {mobileOpen ? (
         <nav
           id="mobile-nav"
-          aria-label="Main"
+          aria-label={dict.nav.mainNavLabel}
           className="border-t border-sand-200 bg-white lg:hidden"
         >
           <ul className="mx-auto max-w-7xl divide-y divide-sand-100 px-4 py-2">
@@ -187,7 +257,7 @@ export default function SiteHeader() {
                   {item.label}
                 </Link>
                 {item.children ? (
-                  <ul className="mt-1 space-y-1 pl-4">
+                  <ul className="mt-1 space-y-1 border-l-2 border-gold-500/40 pl-4">
                     {item.children.slice(1).map((child) => (
                       <li key={child.href}>
                         <Link href={child.href} className="block py-1 text-sm text-ink-500">
@@ -202,6 +272,13 @@ export default function SiteHeader() {
           </ul>
         </nav>
       ) : null}
+
+      {/* The crest's three colours, in its own proportions, as the header rule. */}
+      <div aria-hidden className="flex h-1">
+        <span className="w-1/2 bg-navy-600" />
+        <span className="w-1/4 bg-gold-500" />
+        <span className="w-1/4 bg-vermilion-500" />
+      </div>
     </header>
   );
 }

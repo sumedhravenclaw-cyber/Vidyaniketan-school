@@ -1,36 +1,67 @@
+import Image from "next/image";
 import Link from "next/link";
-import { school } from "@/lib/content/school";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
+import type { Locale } from "@/lib/i18n/config";
+import type { SchoolProfile } from "@/lib/types";
 
-const quickLinks = [
-  { label: "About the School", href: "/about" },
-  { label: "Admissions", href: "/admissions" },
-  { label: "Mandatory Public Disclosure", href: "/about/disclosure" },
-  { label: "CBSE Results", href: "/about/results" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Contact Us", href: "/contact" },
-];
-
-export default function SiteFooter() {
+export default function SiteFooter({
+  locale,
+  dict,
+  school,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  school: SchoolProfile;
+}) {
   const a = school.address;
+  const p = (path: string) => "/" + locale + path;
+
+  const quickLinks = [
+    { label: dict.nav.aboutSchool, href: p("/about") },
+    { label: dict.nav.admissions, href: p("/admissions") },
+    { label: dict.nav.disclosure, href: p("/about/disclosure") },
+    { label: dict.nav.results, href: p("/about/results") },
+    { label: dict.nav.gallery, href: p("/gallery") },
+    { label: dict.nav.contact, href: p("/contact") },
+  ];
 
   return (
     <footer className="on-navy mt-24 bg-navy-900 text-navy-100">
+      {/* Same three-colour rule as the header, mirrored. */}
+      <div aria-hidden className="flex h-1">
+        <span className="w-1/4 bg-vermilion-500" />
+        <span className="w-1/4 bg-gold-500" />
+        <span className="w-1/2 bg-navy-600" />
+      </div>
+
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-3">
         <div>
-          <p className="deva text-lg text-gold-400">{school.motto.sanskrit}</p>
+          <Image
+            src="/logo.jpg"
+            alt={
+              locale === "mr"
+                ? school.name + " चा बोधचिन्ह"
+                : "Crest of " + school.name
+            }
+            width={176}
+            height={176}
+            className="h-20 w-20 rounded-full ring-2 ring-gold-500/50"
+          />
+          <p className="deva mt-5 text-lg text-gold-400">{school.motto.sanskrit}</p>
           <p className="mt-1 text-sm text-navy-200">{school.motto.translation}</p>
-          <h2 className="mt-5 font-display text-xl font-semibold text-white">
+          <h2 className="mt-4 font-display text-xl font-semibold text-white">
             {school.name}
           </h2>
           <p className="mt-2 max-w-sm text-sm leading-relaxed text-navy-200">
-            An English-medium school affiliated to the {school.board}, founded so that
-            the children of Chikhli would not have to travel 25 kilometres for their
-            education.
+            {dict.home.heroLead}
           </p>
         </div>
 
         <div>
-          <h3 className="font-display text-base font-semibold text-white">Quick links</h3>
+          <h3 className="font-display text-base font-semibold text-white">
+            {dict.common.quickLinks}
+          </h3>
+          <span aria-hidden className="mt-2 block h-0.5 w-10 bg-gold-500" />
           <ul className="mt-4 space-y-2 text-sm">
             {quickLinks.map((l) => (
               <li key={l.href}>
@@ -43,14 +74,17 @@ export default function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="font-display text-base font-semibold text-white">Contact</h3>
+          <h3 className="font-display text-base font-semibold text-white">
+            {dict.common.contactHeading}
+          </h3>
+          <span aria-hidden className="mt-2 block h-0.5 w-10 bg-gold-500" />
           <address className="mt-4 space-y-3 text-sm not-italic text-navy-200">
             <p className="leading-relaxed">
               {a.line1}
               <br />
               {a.line2}
               <br />
-              {a.city}, Dist. {a.district}
+              {a.city}, {a.district}
               <br />
               {a.state} &ndash; {a.pin}
             </p>
@@ -71,7 +105,7 @@ export default function SiteFooter() {
               </a>
             </p>
             <p className="text-navy-200">{school.officeHours}</p>
-            <p className="text-navy-200">Sunday closed</p>
+            <p className="text-navy-200">{dict.common.sundayClosed}</p>
           </address>
 
           <div className="mt-5 flex gap-4 text-sm">
@@ -102,11 +136,11 @@ export default function SiteFooter() {
       <div className="border-t border-navy-700">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-5 text-xs text-navy-200">
           <p>
-            &copy; {new Date().getFullYear()} {school.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {school.name}. {dict.common.allRightsReserved}
           </p>
           <p>
-            CBSE Affiliation No. {school.affiliationNo} &middot; School Code{" "}
-            {school.schoolCode}
+            {dict.common.affiliationNo} {school.affiliationNo} &middot;{" "}
+            {dict.common.schoolCode} {school.schoolCode}
           </p>
         </div>
       </div>
