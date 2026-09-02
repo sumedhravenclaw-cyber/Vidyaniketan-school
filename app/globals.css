@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/*
+  Palette is built out from the school's existing identity rather than replacing
+  it: the vermilion parents already associate with the school, disciplined and
+  paired with a deep institutional navy so it stops shouting. Gold is reserved
+  for the motto and for rules — never for interactive elements.
+*/
+@theme {
+  --color-navy-50:  #f2f6fa;
+  --color-navy-100: #e2ebf4;
+  --color-navy-200: #c2d5e7;
+  --color-navy-600: #24486b;
+  --color-navy-700: #1a3450;
+  --color-navy-800: #12283f;
+  --color-navy-900: #0c1c2d;
+
+  --color-vermilion-50:  #fdf3ee;
+  --color-vermilion-100: #fbe3d6;
+  --color-vermilion-500: #d9480f;
+  --color-vermilion-600: #c03f0c;
+  --color-vermilion-700: #9c330a;
+
+  --color-gold-400: #d9b23f;
+  --color-gold-500: #c8a227;
+  --color-gold-600: #a8871d;
+
+  --color-sand-50:  #fbfaf7;
+  --color-sand-100: #f5f2ec;
+  --color-sand-200: #e9e4d9;
+
+  --color-ink-500: #5c6672;
+  --color-ink-600: #47505b;
+  --color-ink-900: #16202b;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-karla), "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-deva: var(--font-noto-deva), Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  /* Keyboard focus must stay obvious on both the sand and navy grounds. */
+  :focus-visible {
+    outline: 2px solid var(--color-vermilion-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-navy :focus-visible {
+    outline-color: var(--color-gold-400);
+  }
+}
+
+@utility deva {
+  font-family: var(--font-deva);
+}
