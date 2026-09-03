@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Playfair_Display, Mulish, Noto_Serif_Devanagari } from "next/font/google";
+import { Montserrat, Noto_Sans_Devanagari } from "next/font/google";
 import "../globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -10,30 +10,25 @@ import { locales, localeTags, isLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 
 /**
- * A high-contrast transitional serif for headings, echoing the engraved
- * lettering on the school crest, over a warm humanist sans for body copy.
- * Noto Serif Devanagari carries the motto and all Marathi text.
+ * One family carries the whole interface, the way the reference site sets it:
+ * Montserrat from 400 to 700, with hierarchy expressed by weight and size
+ * rather than by a second face. Loaded as a variable font, so every weight in
+ * that range costs one file.
+ *
+ * Montserrat has no Devanagari coverage, so Noto Sans Devanagari sits behind it
+ * in the stack for the motto and for every string on the Marathi locale. It is
+ * the sans companion, not the serif one, to match Montserrat's geometry.
  */
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-montserrat",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
-const mulish = Mulish({
-  subsets: ["latin"],
-  variable: "--font-mulish",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const notoDeva = Noto_Serif_Devanagari({
+const notoDeva = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-noto-deva",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 const BASE = "https://vidyaniketanchikhli.com";
@@ -144,7 +139,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={localeTags[typedLocale]}
-      className={`${playfair.variable} ${mulish.variable} ${notoDeva.variable}`}
+      className={`${montserrat.variable} ${notoDeva.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <script
@@ -153,7 +148,7 @@ export default async function LocaleLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-vermilion-500 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-crimson-500 focus:px-4 focus:py-2 focus:text-white"
         >
           {dict.nav.skipToContent}
         </a>

@@ -66,12 +66,12 @@ export default async function ContactPage({
           <div>
             <SectionHeading title={c.officeTitle} />
 
-            <div className="mt-6 overflow-hidden rounded-lg border border-sand-200 bg-white">
-              <span aria-hidden className="block h-1 bg-navy-600" />
-              <dl className="divide-y divide-sand-200">
+            <div className="mt-6 overflow-hidden rounded-lg border border-mist-200 bg-white">
+              <span aria-hidden className="block h-1 bg-maroon-600" />
+              <dl className="divide-y divide-mist-200">
                 <div className="px-6 py-5">
                   <dt className="text-sm text-ink-500">{dict.common.address}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-navy-800">
+                  <dd className="mt-1 text-sm leading-relaxed text-maroon-800">
                     {a.line1}
                     <br />
                     {a.line2}
@@ -87,7 +87,7 @@ export default async function ContactPage({
                   <dd className="mt-1 text-sm">
                     <a
                       href={"tel:" + school.primaryPhone.replace(/\s/g, "")}
-                      className="font-semibold text-navy-800 underline-offset-4 hover:underline"
+                      className="font-semibold text-maroon-800 underline-offset-4 hover:underline"
                     >
                       {school.primaryPhone}
                     </a>
@@ -99,7 +99,7 @@ export default async function ContactPage({
                   <dd className="mt-1 break-all text-sm">
                     <a
                       href={"mailto:" + school.email}
-                      className="font-semibold text-navy-800 underline-offset-4 hover:underline"
+                      className="font-semibold text-maroon-800 underline-offset-4 hover:underline"
                     >
                       {school.email}
                     </a>
@@ -108,7 +108,7 @@ export default async function ContactPage({
 
                 <div className="px-6 py-5">
                   <dt className="text-sm text-ink-500">{dict.common.officeHours}</dt>
-                  <dd className="mt-1 text-sm text-navy-800">
+                  <dd className="mt-1 text-sm text-maroon-800">
                     {school.officeHours}
                     <br />
                     <span className="text-ink-500">{dict.common.sundayClosed}</span>
@@ -117,7 +117,7 @@ export default async function ContactPage({
 
                 <div className="px-6 py-5">
                   <dt className="text-sm text-ink-500">CBSE</dt>
-                  <dd className="mt-1 text-sm tabular-nums text-navy-800">
+                  <dd className="mt-1 text-sm tabular-nums text-maroon-800">
                     {dict.common.affiliationNo} {school.affiliationNo}
                     <br />
                     {dict.common.schoolCode} {school.schoolCode}
@@ -133,7 +133,7 @@ export default async function ContactPage({
                 "?subject=" +
                 encodeURIComponent(locale === "mr" ? "संकेतस्थळावरून चौकशी" : "Website enquiry")
               }
-              className="mt-7 inline-flex items-center rounded-md bg-vermilion-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vermilion-600"
+              className="mt-7 inline-flex items-center rounded-md bg-crimson-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-crimson-600"
             >
               {c.emailOffice}
             </a>
@@ -145,7 +145,7 @@ export default async function ContactPage({
               {c.findingUsBody}
             </p>
 
-            <div className="mt-6 overflow-hidden rounded-lg border border-sand-200 bg-sand-100 ring-1 ring-gold-500/30">
+            <div className="mt-6 overflow-hidden rounded-lg border border-mist-200 bg-mist-100 ring-1 ring-gold-500/30">
               <iframe
                 title={c.mapAlt}
                 src={MAP_SRC}
@@ -164,7 +164,7 @@ export default async function ContactPage({
               }
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-4 inline-block text-sm font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+              className="mt-4 inline-block text-sm font-semibold text-crimson-600 underline-offset-4 hover:underline"
             >
               {c.openInMaps}
               <span className="sr-only">{dict.common.opensInNewTab}</span>

@@ -45,7 +45,7 @@ function LanguageSwitcher({
         return (
           <span key={l} className="flex items-center">
             {i > 0 ? (
-              <span aria-hidden className="mx-1 text-navy-200/50">
+              <span aria-hidden className="mx-1 text-maroon-200/50">
                 |
               </span>
             ) : null}
@@ -58,7 +58,7 @@ function LanguageSwitcher({
                 "rounded px-1.5 py-0.5 transition-colors " +
                 (active
                   ? "font-semibold text-gold-400"
-                  : "text-navy-100 hover:text-white")
+                  : "text-maroon-100 hover:text-white")
               }
             >
               {localeNames[l].native}
@@ -111,13 +111,13 @@ export default function SiteHeader({
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 bg-sand-50/95 backdrop-blur">
-      {/* Utility bar — the crest's navy, with its gold on the motto. */}
-      <div className="on-navy bg-navy-800 text-navy-100">
+    <header className="sticky top-0 z-40 bg-mist-50/95 backdrop-blur">
+      {/* Utility bar — the brand maroon, with its gold on the motto. */}
+      <div className="on-maroon bg-maroon-600 text-maroon-100">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2 text-[13px]">
           <p className="flex items-center gap-2">
             <span className="deva text-gold-400">{school.motto.sanskrit}</span>
-            <span className="hidden text-navy-200 sm:inline">
+            <span className="hidden text-maroon-200 sm:inline">
               &mdash; {school.motto.translation}
             </span>
           </p>
@@ -148,7 +148,7 @@ export default function SiteHeader({
             className="h-12 w-12 shrink-0 rounded-full ring-2 ring-gold-500/50 sm:h-14 sm:w-14"
           />
           <span className="leading-tight">
-            <span className="block font-display text-base font-semibold text-navy-800 sm:text-lg">
+            <span className="block font-display text-base font-semibold text-maroon-800 sm:text-lg">
               {school.name}
             </span>
             <span className="block text-xs text-ink-500">
@@ -163,7 +163,7 @@ export default function SiteHeader({
           onClick={() => setMobileOpen((v) => !v)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
-          className="rounded border border-sand-200 px-3 py-2 text-sm font-medium text-navy-800 lg:hidden"
+          className="rounded border border-mist-200 px-3 py-2 text-sm font-medium text-maroon-800 lg:hidden"
         >
           {mobileOpen ? dict.nav.close : dict.nav.menu}
         </button>
@@ -182,8 +182,8 @@ export default function SiteHeader({
                       className={
                         "block rounded px-3 py-2 text-sm font-medium transition-colors " +
                         (active
-                          ? "text-vermilion-600"
-                          : "text-navy-800 hover:text-vermilion-600")
+                          ? "text-crimson-600"
+                          : "text-maroon-800 hover:text-crimson-600")
                       }
                     >
                       {item.label}
@@ -201,8 +201,8 @@ export default function SiteHeader({
                     className={
                       "flex items-center gap-1 rounded px-3 py-2 text-sm font-medium transition-colors " +
                       (active
-                        ? "text-vermilion-600"
-                        : "text-navy-800 hover:text-vermilion-600")
+                        ? "text-crimson-600"
+                        : "text-maroon-800 hover:text-crimson-600")
                     }
                   >
                     {item.label}
@@ -211,17 +211,17 @@ export default function SiteHeader({
                     </span>
                   </button>
                   {open ? (
-                    <ul className="absolute left-0 top-full z-50 min-w-64 overflow-hidden rounded-md border border-sand-200 bg-white shadow-lg">
-                      {/* Gold cap ties the dropdown back to the crest. */}
+                    <ul className="absolute left-0 top-full z-50 min-w-64 overflow-hidden rounded-md border border-mist-200 bg-white shadow-lg">
+                      {/* Gold cap ties the dropdown back to the brand rule. */}
                       <li aria-hidden className="h-0.5 bg-gold-500" />
                       {item.children.map((child) => (
                         <li key={child.href}>
                           <Link
                             href={child.href}
                             className={
-                              "block px-4 py-2 text-sm transition-colors hover:bg-sand-100 " +
+                              "block px-4 py-2 text-sm transition-colors hover:bg-mist-100 " +
                               (stripLocale(pathname) === stripLocale(child.href)
-                                ? "font-medium text-vermilion-600"
+                                ? "font-medium text-crimson-600"
                                 : "text-ink-600")
                             }
                           >
@@ -242,16 +242,16 @@ export default function SiteHeader({
         <nav
           id="mobile-nav"
           aria-label={dict.nav.mainNavLabel}
-          className="border-t border-sand-200 bg-white lg:hidden"
+          className="border-t border-mist-200 bg-white lg:hidden"
         >
-          <ul className="mx-auto max-w-7xl divide-y divide-sand-100 px-4 py-2">
+          <ul className="mx-auto max-w-7xl divide-y divide-mist-100 px-4 py-2">
             {navigation.map((item) => (
               <li key={item.label} className="py-2">
                 <Link
                   href={item.href}
                   className={
                     "block text-sm font-medium " +
-                    (isActive(pathname, item) ? "text-vermilion-600" : "text-navy-800")
+                    (isActive(pathname, item) ? "text-crimson-600" : "text-maroon-800")
                   }
                 >
                   {item.label}
@@ -273,11 +273,11 @@ export default function SiteHeader({
         </nav>
       ) : null}
 
-      {/* The crest's three colours, in its own proportions, as the header rule. */}
+      {/* The three brand colours, in fixed proportions, as the header rule. */}
       <div aria-hidden className="flex h-1">
-        <span className="w-1/2 bg-navy-600" />
+        <span className="w-1/2 bg-maroon-600" />
         <span className="w-1/4 bg-gold-500" />
-        <span className="w-1/4 bg-vermilion-500" />
+        <span className="w-1/4 bg-crimson-500" />
       </div>
     </header>
   );

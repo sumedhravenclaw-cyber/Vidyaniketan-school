@@ -107,12 +107,12 @@ export default async function AdmissionsPage({
                     <li key={s.step} className="flex gap-5">
                       <span
                         aria-hidden
-                        className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-vermilion-500 font-display text-sm font-semibold text-white ring-2 ring-gold-500/50"
+                        className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-crimson-500 font-display text-sm font-semibold text-white ring-2 ring-gold-500/50"
                       >
                         {s.step}
                       </span>
                       <div>
-                        <h3 className="font-display text-lg font-semibold text-navy-800">
+                        <h3 className="font-display text-lg font-semibold text-maroon-800">
                           {s.title}
                         </h3>
                         <p className="mt-1 text-sm leading-relaxed text-ink-600">{s.detail}</p>
@@ -125,10 +125,10 @@ export default async function AdmissionsPage({
               )}
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-lg border border-sand-200 bg-white">
+            <div className="mt-10 overflow-hidden rounded-lg border border-mist-200 bg-white">
               <span aria-hidden className="block h-1 bg-gold-500" />
               <div className="p-7">
-                <h3 className="font-display text-lg font-semibold text-navy-800">
+                <h3 className="font-display text-lg font-semibold text-maroon-800">
                   {a.documentsTitle}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-600">{a.documentsBody}</p>
@@ -139,7 +139,7 @@ export default async function AdmissionsPage({
                         href={feeDoc.href}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                        className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
                       >
                         {a.feeStructure}
                         <span className="sr-only">{dict.common.opensInNewTab}</span>
@@ -152,7 +152,7 @@ export default async function AdmissionsPage({
                         href={calendarDoc.href}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                        className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
                       >
                         {a.academicCalendar}
                         <span className="sr-only">{dict.common.opensInNewTab}</span>
@@ -164,10 +164,10 @@ export default async function AdmissionsPage({
             </div>
           </div>
 
-          <aside className="overflow-hidden rounded-lg border border-sand-200 bg-white">
-            <span aria-hidden className="block h-1 bg-vermilion-500" />
+          <aside className="overflow-hidden rounded-lg border border-mist-200 bg-white">
+            <span aria-hidden className="block h-1 bg-crimson-500" />
             <div className="p-7">
-              <h2 className="font-display text-xl font-semibold text-navy-800">
+              <h2 className="font-display text-xl font-semibold text-maroon-800">
                 {a.makeEnquiry}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-ink-600">{a.enquiryBody}</p>
@@ -178,7 +178,7 @@ export default async function AdmissionsPage({
                   <dd className="mt-0.5">
                     <a
                       href={"tel:" + school.primaryPhone.replace(/\s/g, "")}
-                      className="font-semibold text-navy-800 underline-offset-4 hover:underline"
+                      className="font-semibold text-maroon-800 underline-offset-4 hover:underline"
                     >
                       {school.primaryPhone}
                     </a>
@@ -189,7 +189,7 @@ export default async function AdmissionsPage({
                   <dd className="mt-0.5 break-all">
                     <a
                       href={"mailto:" + school.email}
-                      className="font-semibold text-navy-800 underline-offset-4 hover:underline"
+                      className="font-semibold text-maroon-800 underline-offset-4 hover:underline"
                     >
                       {school.email}
                     </a>
@@ -197,23 +197,23 @@ export default async function AdmissionsPage({
                 </div>
                 <div>
                   <dt className="text-ink-500">{dict.common.officeHours}</dt>
-                  <dd className="mt-0.5 text-navy-800">{school.officeHours}</dd>
+                  <dd className="mt-0.5 text-maroon-800">{school.officeHours}</dd>
                 </div>
               </dl>
 
               <a
                 href={enquiryMailto(school.email, locale)}
-                className="mt-7 inline-flex w-full items-center justify-center rounded-md bg-vermilion-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vermilion-600"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-md bg-crimson-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-crimson-600"
               >
                 {a.startEmail}
               </a>
               <p className="mt-3 text-xs leading-relaxed text-ink-500">{a.startEmailNote}</p>
 
-              <p className="mt-6 border-t border-sand-200 pt-5 text-sm text-ink-500">
+              <p className="mt-6 border-t border-mist-200 pt-5 text-sm text-ink-500">
                 {a.preferVisit}{" "}
                 <Link
                   href={"/" + locale + "/contact"}
-                  className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                  className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
                 >
                   {a.directions}
                 </Link>

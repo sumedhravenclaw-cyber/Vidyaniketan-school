@@ -43,18 +43,18 @@ function formatSize(bytes?: number): string {
 
 function RowTable({ rows }: { rows: DisclosureRow[] }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-sand-200 bg-white">
+    <div className="overflow-x-auto rounded-lg border border-mist-200 bg-white">
       <table className="w-full min-w-md border-collapse text-left text-sm">
         <tbody>
           {rows.map((r) => (
-            <tr key={r.label} className="border-b border-sand-200 last:border-0">
+            <tr key={r.label} className="border-b border-mist-200 last:border-0">
               <th
                 scope="row"
                 className="w-1/2 px-5 py-3.5 align-top font-medium text-ink-500"
               >
                 {r.label}
               </th>
-              <td className="px-5 py-3.5 align-top font-medium text-navy-800">{r.value}</td>
+              <td className="px-5 py-3.5 align-top font-medium text-maroon-800">{r.value}</td>
             </tr>
           ))}
         </tbody>
@@ -65,7 +65,7 @@ function RowTable({ rows }: { rows: DisclosureRow[] }) {
 
 function DocumentTable({ docs, dict }: { docs: DisclosureDocument[]; dict: Dictionary }) {
   return (
-    <ol className="divide-y divide-sand-200 overflow-hidden rounded-lg border border-sand-200 bg-white">
+    <ol className="divide-y divide-mist-200 overflow-hidden rounded-lg border border-mist-200 bg-white">
       {docs.map((d, i) => (
         <li
           key={d.href}
@@ -81,7 +81,7 @@ function DocumentTable({ docs, dict }: { docs: DisclosureDocument[]; dict: Dicti
             href={d.href}
             target="_blank"
             rel="noreferrer noopener"
-            className="shrink-0 text-sm font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+            className="shrink-0 text-sm font-semibold text-crimson-600 underline-offset-4 hover:underline"
           >
             {dict.disclosure.view}{" "}
             <span className="font-normal text-ink-500">({formatSize(d.sizeBytes)})</span>
@@ -137,35 +137,35 @@ export default async function DisclosurePage({
           <DocumentTable docs={academicDocumentsFor(locale)} dict={dict} />
         </div>
 
-        <h3 className="mt-12 font-display text-xl font-semibold text-navy-800">
+        <h3 className="mt-12 font-display text-xl font-semibold text-maroon-800">
           {dict.results.classX}
         </h3>
-        <div className="mt-4 overflow-x-auto rounded-lg border border-sand-200 bg-white">
+        <div className="mt-4 overflow-x-auto rounded-lg border border-mist-200 bg-white">
           <table className="w-full min-w-lg border-collapse text-left text-sm">
             <thead>
-              <tr className="border-b-2 border-gold-500 bg-sand-100">
-                <th className="px-5 py-3 font-semibold text-navy-800">{dict.results.year}</th>
-                <th className="px-5 py-3 font-semibold text-navy-800">
+              <tr className="border-b-2 border-gold-500 bg-mist-100">
+                <th className="px-5 py-3 font-semibold text-maroon-800">{dict.results.year}</th>
+                <th className="px-5 py-3 font-semibold text-maroon-800">
                   {dict.results.registered}
                 </th>
-                <th className="px-5 py-3 font-semibold text-navy-800">
+                <th className="px-5 py-3 font-semibold text-maroon-800">
                   {dict.results.passed}
                 </th>
-                <th className="px-5 py-3 font-semibold text-navy-800">
+                <th className="px-5 py-3 font-semibold text-maroon-800">
                   {dict.results.passPercentage}
                 </th>
-                <th className="px-5 py-3 font-semibold text-navy-800">
+                <th className="px-5 py-3 font-semibold text-maroon-800">
                   {dict.results.remarks}
                 </th>
               </tr>
             </thead>
             <tbody>
               {classXResults.map((r) => (
-                <tr key={r.year} className="border-b border-sand-200 last:border-0">
+                <tr key={r.year} className="border-b border-mist-200 last:border-0">
                   <td className="px-5 py-3 tabular-nums text-ink-600">{r.year}</td>
                   <td className="px-5 py-3 tabular-nums text-ink-500">{r.registered ?? "—"}</td>
                   <td className="px-5 py-3 tabular-nums text-ink-500">{r.passed ?? "—"}</td>
-                  <td className="px-5 py-3 font-semibold tabular-nums text-navy-800">
+                  <td className="px-5 py-3 font-semibold tabular-nums text-maroon-800">
                     {r.passPercentage}
                   </td>
                   <td className="px-5 py-3 text-ink-500">{remarkFor(r.remarks, locale)}</td>

@@ -58,7 +58,7 @@ export default async function GalleryPage({
               <div className="flex flex-wrap items-baseline justify-between gap-3 border-b-2 border-gold-500 pb-3">
                 <h2
                   id={"album-" + album.slug}
-                  className="font-display text-2xl font-semibold text-navy-800"
+                  className="font-display text-2xl font-semibold text-maroon-800"
                 >
                   {album.title}
                 </h2>
@@ -74,7 +74,7 @@ export default async function GalleryPage({
                 {album.images.map((img) => (
                   <li
                     key={img.src}
-                    className="relative aspect-4/3 overflow-hidden rounded-lg bg-sand-200 ring-1 ring-gold-500/25"
+                    className="relative aspect-4/3 overflow-hidden rounded-lg bg-mist-200 ring-1 ring-gold-500/25"
                   >
                     <Image
                       src={img.src}
@@ -90,10 +90,10 @@ export default async function GalleryPage({
           ))}
         </div>
 
-        <div className="mt-16 overflow-hidden rounded-lg border border-sand-200 bg-white">
-          <span aria-hidden className="block h-1 bg-vermilion-500" />
+        <div className="mt-16 overflow-hidden rounded-lg border border-mist-200 bg-white">
+          <span aria-hidden className="block h-1 bg-crimson-500" />
           <div className="p-7">
-            <h2 className="font-display text-xl font-semibold text-navy-800">
+            <h2 className="font-display text-xl font-semibold text-maroon-800">
               {dict.gallery.videoTitle}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-600">
@@ -105,7 +105,7 @@ export default async function GalleryPage({
                   href={school.social.youtube}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                  className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
                 >
                   YouTube
                   <span className="sr-only">{dict.common.opensInNewTab}</span>
@@ -116,7 +116,7 @@ export default async function GalleryPage({
                   href={school.social.instagram}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                  className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
                 >
                   Instagram
                   <span className="sr-only">{dict.common.opensInNewTab}</span>
@@ -130,7 +130,7 @@ export default async function GalleryPage({
           {dict.gallery.lookingFor}{" "}
           <Link
             href={"/" + locale + "/contact"}
-            className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+            className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
           >
             {dict.gallery.contactOffice}
           </Link>

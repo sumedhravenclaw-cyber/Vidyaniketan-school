@@ -59,14 +59,14 @@ export default async function ResultsPage({
           {classXResults.map((r) => (
             <div
               key={r.year}
-              className="overflow-hidden rounded-lg border border-sand-200 bg-white"
+              className="overflow-hidden rounded-lg border border-mist-200 bg-white"
             >
               <span aria-hidden className="block h-1 bg-gold-500" />
               <div className="p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">
                   {r.year}
                 </p>
-                <p className="mt-2 font-display text-3xl font-semibold tabular-nums text-navy-800">
+                <p className="mt-2 font-display text-3xl font-semibold tabular-nums text-maroon-800">
                   {r.passPercentage}
                 </p>
                 <p className="mt-1 text-sm text-ink-500">
@@ -87,7 +87,7 @@ export default async function ResultsPage({
               href={resultDoc.href}
               target="_blank"
               rel="noreferrer noopener"
-              className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+              className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
             >
               {dict.results.downloadResult}
               <span className="sr-only">{dict.common.opensInNewTab}</span>
@@ -95,7 +95,7 @@ export default async function ResultsPage({
           ) : null}
           <Link
             href={"/" + locale + "/about/disclosure"}
-            className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+            className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
           >
             {dict.nav.disclosure}
           </Link>

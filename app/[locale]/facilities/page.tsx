@@ -59,17 +59,17 @@ export default async function FacilitiesPage({
             <li key={f.slug}>
               <Link
                 href={"/" + locale + "/facilities/" + f.slug}
-                className="flex h-full flex-col overflow-hidden rounded-lg border border-sand-200 bg-white transition-colors hover:border-gold-500"
+                className="flex h-full flex-col overflow-hidden rounded-lg border border-mist-200 bg-white transition-colors hover:border-gold-500"
               >
-                <span aria-hidden className="block h-1 bg-navy-600" />
+                <span aria-hidden className="block h-1 bg-maroon-600" />
                 <div className="flex flex-1 flex-col p-6">
-                  <h2 className="font-display text-xl font-semibold text-navy-800">
+                  <h2 className="font-display text-xl font-semibold text-maroon-800">
                     {f.title}
                   </h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-600">
                     {f.summary}
                   </p>
-                  <span className="mt-5 text-sm font-semibold text-vermilion-600">
+                  <span className="mt-5 text-sm font-semibold text-crimson-600">
                     {dict.common.readMore}
                   </span>
                 </div>

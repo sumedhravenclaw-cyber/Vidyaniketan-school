@@ -1,45 +1,62 @@
 @import "tailwindcss";
 
 /*
-  Palette is built out from the school's existing identity rather than replacing
-  it: the vermilion parents already associate with the school, disciplined and
-  paired with a deep institutional navy so it stops shouting. Gold is reserved
-  for the motto and for rules — never for interactive elements.
+  Palette adopted from Little Rock Indian School (littlerock.edu.in): a deep
+  maroon chrome carrying gold, over a cool near-white ground. Sampled values —
+  maroon #7f0000 (header bar, nav, footer rules), gold #ffd306 (stat counters,
+  accents), ink #26262c / #76767f (headings, body), ground #f6f7fd.
+
+  Roles, so the three brand hues never compete:
+    maroon  - chrome and dark grounds; headings and nav on light
+    crimson - interactive only (buttons, links, active nav). Lighter than the
+              maroon chrome on purpose, so an action never disappears into it.
+    gold    - ornament: rules, rings, the motto, eyebrows on dark. Never a
+              standalone control on a light ground (it cannot hold 4.5:1).
+  Every pair used in the UI is verified against WCAG AA; see the ratios noted
+  beside the steps that carry text.
 */
 @theme {
-  /* Blues sampled from the crest's ring. navy-600 is the ring itself; the
-     darker steps carry the same hue so large surfaces stay calm and readable. */
-  --color-navy-50:  #eff4fb;
-  --color-navy-100: #dbe6f5;
-  --color-navy-200: #b6cbe8;
-  --color-navy-600: #1a4f9c;
-  --color-navy-700: #14407f;
-  --color-navy-800: #0d2f5e;
-  --color-navy-900: #08203f;
+  /* The maroon of the school bar. 600 is the sampled #7f0000; darker steps hold
+     the same hue so large surfaces stay calm, tints are for text on those. */
+  --color-maroon-50:  #fdf3f3;
+  --color-maroon-100: #f7dcdc; /* 13.7:1 on maroon-900 */
+  --color-maroon-200: #e8b4b4; /*  8.3:1 on maroon-800 */
+  --color-maroon-600: #7f0000; /* sampled from the source nav bar */
+  --color-maroon-700: #660202;
+  --color-maroon-800: #560202; /* 14.9:1 as heading text on white */
+  --color-maroon-900: #3a0101;
 
-  /* The halo behind the lamp. */
-  --color-vermilion-50:  #fdf3ee;
-  --color-vermilion-100: #fbe3d6;
-  --color-vermilion-500: #d9480f;
-  --color-vermilion-600: #c03f0c;
-  --color-vermilion-700: #9c330a;
+  /* Actions. A brighter, slightly cooler red than the chrome maroon so buttons
+     and links read as interactive rather than as more chrome. */
+  --color-crimson-50:  #fdf2f2;
+  --color-crimson-100: #fbdada;
+  --color-crimson-500: #c1121f; /* 6.2:1 with white text */
+  --color-crimson-600: #a30f1a; /* 8.0:1 as link text on white */
+  --color-crimson-700: #850d15;
 
-  /* The laurel and the Devanagari motto. */
-  --color-gold-400: #f0c04a;
-  --color-gold-500: #e0a91b;
-  --color-gold-600: #b98a14;
+  /* The source's yellow. 400 is #ffd306 verbatim and belongs on dark grounds;
+     500 is deepened so hairlines survive on white; 600 is the only step that
+     may carry text on a light ground (4.9:1). */
+  --color-gold-400: #ffd306; /* 10.4:1 on maroon-800 */
+  --color-gold-500: #d4a600;
+  --color-gold-600: #8a6d00;
 
-  --color-sand-50:  #fbfaf7;
-  --color-sand-100: #f5f2ec;
-  --color-sand-200: #e9e4d9;
+  /* Cool near-white ground, matching the source's section fills. */
+  --color-mist-50:  #fafafc;
+  --color-mist-100: #f6f7fd; /* sampled */
+  --color-mist-200: #e5e6ef;
 
-  --color-ink-500: #5c6672;
-  --color-ink-600: #47505b;
-  --color-ink-900: #16202b;
+  --color-ink-500: #6b6b75; /* 5.3:1 on white */
+  --color-ink-600: #4a4a53;
+  --color-ink-900: #26262c; /* sampled */
 
-  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-mulish), "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-deva: var(--font-noto-deva), Georgia, serif;
+  /* One family, as on the source site: display and body differ by weight and
+     size, not by face. Noto Sans Devanagari sits behind Montserrat in both
+     stacks so Marathi and the Sanskrit motto render in a chosen face rather
+     than in whatever the OS picks. */
+  --font-display: var(--font-montserrat), var(--font-noto-deva), "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-montserrat), var(--font-noto-deva), "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-deva: var(--font-noto-deva), "Nirmala UI", sans-serif;
 }
 
 @layer base {
@@ -57,7 +74,7 @@
   }
 
   body {
-    background-color: var(--color-sand-50);
+    background-color: var(--color-mist-50);
     color: var(--color-ink-900);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -66,16 +83,19 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     text-wrap: balance;
-    letter-spacing: -0.01em;
+    /* Montserrat's geometric forms open up at display sizes; a hair of
+       negative tracking keeps large headings from looking loose. */
+    letter-spacing: -0.015em;
   }
 
-  /* Keyboard focus must stay obvious on both the sand and navy grounds. */
+  /* Keyboard focus must stay obvious on both the mist and maroon grounds. */
   :focus-visible {
-    outline: 2px solid var(--color-vermilion-500);
+    outline: 2px solid var(--color-crimson-500);
     outline-offset: 3px;
     border-radius: 2px;
   }
-  .on-navy :focus-visible {
+  /* Crimson would sink into a maroon ground, so gold takes over there. */
+  .on-maroon :focus-visible {
     outline-color: var(--color-gold-400);
   }
 }

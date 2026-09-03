@@ -47,7 +47,7 @@ function NoticeList({
   locale: Locale;
 }) {
   return (
-    <ul className="divide-y divide-sand-200 overflow-hidden rounded-lg border border-sand-200 bg-white">
+    <ul className="divide-y divide-mist-200 overflow-hidden rounded-lg border border-mist-200 bg-white">
       {items.map((c) => (
         <li key={c.title + c.date} className="px-6 py-5">
           <div className="flex flex-wrap items-center gap-3">
@@ -62,7 +62,7 @@ function NoticeList({
               })}
             </time>
           </div>
-          <h3 className="mt-2 font-display text-lg font-semibold text-navy-800">
+          <h3 className="mt-2 font-display text-lg font-semibold text-maroon-800">
             {c.href ? (
               <a
                 href={c.href}
@@ -134,7 +134,7 @@ export default async function CircularsPage({
                 href={school.social.instagram}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
               >
                 Instagram
               </a>

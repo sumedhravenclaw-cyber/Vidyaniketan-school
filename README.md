@@ -15,26 +15,35 @@ The school crest lives at `public/logo.jpg` (989×989). It also sits at
 sync if the crest is ever replaced.
 
 The crest is a square image with the seal centred on white, so every placement
-masks it with `rounded-full`; that trims the white corners exactly to the navy
-ring. It appears in the header, the homepage hero, the footer, the browser tab,
+masks it with `rounded-full`; that trims the white corners exactly to the ring.
+It appears in the header, the homepage hero, the footer, the browser tab,
 and as `logo` in the `EducationalOrganization` JSON-LD.
 
-Palette in `app/globals.css` is sampled from the crest: `navy-600` is the ring,
-`gold-500` the laurel and the Devanagari motto, `vermilion-500` the halo behind
-the lamp. Type is **Playfair Display** for headings — high-contrast, echoing the
-engraved lettering on the seal — over **Mulish** for body copy, with **Noto Serif
-Devanagari** for the motto and all Marathi text. All three are self-hosted
-through `next/font`, so there is no render-blocking request to Google.
+Palette in `app/globals.css` is adopted from Little Rock Indian School
+(littlerock.edu.in), sampled from its live stylesheet: `maroon-600` is `#7f0000`,
+its header and nav bar; `gold-400` is `#ffd306`, its accent; `ink-900` `#26262c`
+and `mist-100` `#f6f7fd` are its ink and section ground. `crimson-*` is the one
+addition — a brighter, cooler red reserved for actions, because our buttons sit
+on maroon-tinted imagery and a maroon footer where the chrome maroon would bury
+them.
 
-Those three colours repeat as a **navy / gold / vermilion rule** in the crest's
-own proportions — under the header, under every page banner, and mirrored above
-the footer. Gold does the quieter work throughout: a hairline ring on the crest,
-a short underline beneath every section heading, caps on cards and stat tiles,
-breadcrumb separators, and list bullets. The vermilion halo behind the hero crest
-repeats the aura around the lamp, so the mark reads as lit rather than pasted on.
+Type follows the same source: **Montserrat** alone, 400 to 700, with hierarchy
+carried by weight and size rather than by a second face. It loads as a variable
+font, so the whole range is one file. Montserrat has no Devanagari, so **Noto
+Sans Devanagari** sits behind it in every stack and picks up the motto and all
+Marathi text. Both are self-hosted through `next/font`, so there is no
+render-blocking request to Google.
 
-Gold is decorative only — never an interactive colour. Links and buttons stay
-vermilion so "this is clickable" never depends on telling two warm hues apart.
+Three colours repeat as a **maroon / gold / crimson rule** in fixed proportions —
+under the header, under every page banner, and mirrored above the footer. Gold
+does the quieter work throughout: a hairline ring on the crest, a short underline
+beneath every section heading, caps on cards and stat tiles, breadcrumb
+separators, and list bullets.
+
+Gold is decorative only — never an interactive colour, and never text on a light
+ground below `gold-600`, which is the lightest step that holds 4.5:1. Links and
+buttons stay crimson so "this is clickable" never depends on telling two warm
+hues apart.
 
 ## Languages
 
@@ -188,5 +197,3 @@ async redirects() {
 Media and the 16 CBSE PDFs are still served from the existing WordPress uploads
 directory (`next.config.ts` allow-lists the host). Re-upload them to the CMS
 before decommissioning that server.
-#   V i d y a n i k e t a n - s c h o o l  
- 

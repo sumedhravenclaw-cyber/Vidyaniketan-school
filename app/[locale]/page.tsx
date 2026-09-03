@@ -38,7 +38,7 @@ export default async function HomePage({
   return (
     <>
       {/* Hero */}
-      <section className="on-navy relative isolate overflow-hidden bg-navy-900">
+      <section className="on-maroon relative isolate overflow-hidden bg-maroon-900">
         <Image
           src={HERO_IMAGE}
           alt=""
@@ -52,7 +52,7 @@ export default async function HomePage({
             so the right-hand side of the building stays fully visible. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-linear-to-r from-navy-900/90 via-navy-900/55 to-transparent"
+          className="absolute inset-0 bg-linear-to-r from-maroon-900/90 via-maroon-900/55 to-transparent"
         />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:py-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
@@ -63,7 +63,7 @@ export default async function HomePage({
             <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.1] text-white sm:text-5xl">
               {school.name}
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy-100">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-maroon-100">
               {school.tagline}. {dict.home.heroLead}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -74,17 +74,17 @@ export default async function HomePage({
             </div>
           </div>
 
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-navy-700 bg-navy-700">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-maroon-700 bg-maroon-700">
             {stats.map((s) => (
-              <div key={s.label} className="relative bg-navy-800 px-5 py-6">
+              <div key={s.label} className="relative bg-maroon-800 px-5 py-6">
                 <span aria-hidden className="absolute inset-x-5 top-0 h-0.5 bg-gold-500/60" />
-                <dt className="text-xs uppercase tracking-[0.12em] text-navy-200">
+                <dt className="text-xs uppercase tracking-[0.12em] text-maroon-200">
                   {s.label}
                 </dt>
                 <dd className="mt-1 font-display text-2xl font-semibold text-white tabular-nums sm:text-3xl">
                   {s.value.toLocaleString("en-IN")}
                   {s.suffix ? (
-                    <span className="ml-1 text-base font-normal text-navy-200">
+                    <span className="ml-1 text-base font-normal text-maroon-200">
                       {s.suffix}
                     </span>
                   ) : null}
@@ -96,10 +96,10 @@ export default async function HomePage({
       </section>
 
       {/* Admissions strip */}
-      <div className="border-b border-sand-200 bg-vermilion-50">
+      <div className="border-b border-mist-200 bg-crimson-50">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-5">
           <p className="text-sm text-ink-600">
-            <span className="font-semibold text-vermilion-700">
+            <span className="font-semibold text-crimson-700">
               {currentAdmissionCycle
                 ? dict.nav.admissions + " " + currentAdmissionCycle
                 : dict.nav.admissions}
@@ -130,10 +130,10 @@ export default async function HomePage({
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-sand-200 bg-white">
+          <div className="overflow-hidden rounded-lg border border-mist-200 bg-white">
             <span aria-hidden className="block h-1 bg-gold-500" />
             <div className="p-7">
-              <h3 className="font-display text-xl font-semibold text-navy-800">
+              <h3 className="font-display text-xl font-semibold text-maroon-800">
                 {features?.title ?? dict.nav.uniqueFeatures}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -150,7 +150,7 @@ export default async function HomePage({
               <div className="mt-6">
                 <Link
                   href={p("/about/unique-features")}
-                  className="text-sm font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                  className="text-sm font-semibold text-crimson-600 underline-offset-4 hover:underline"
                 >
                   {dict.home.seeAllFeatures}
                 </Link>
@@ -161,7 +161,7 @@ export default async function HomePage({
       </Section>
 
       {/* Results */}
-      <div className="border-y border-sand-200 bg-sand-100">
+      <div className="border-y border-mist-200 bg-mist-100">
         <Section className="!py-14">
           <SectionHeading
             eyebrow={dict.home.resultsEyebrow}
@@ -172,28 +172,28 @@ export default async function HomePage({
             <table className="w-full min-w-md border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b-2 border-gold-500">
-                  <th className="py-3 pr-6 font-semibold text-navy-800">{dict.results.year}</th>
-                  <th className="py-3 pr-6 font-semibold text-navy-800">
+                  <th className="py-3 pr-6 font-semibold text-maroon-800">{dict.results.year}</th>
+                  <th className="py-3 pr-6 font-semibold text-maroon-800">
                     {dict.results.registered}
                   </th>
-                  <th className="py-3 pr-6 font-semibold text-navy-800">
+                  <th className="py-3 pr-6 font-semibold text-maroon-800">
                     {dict.results.passed}
                   </th>
-                  <th className="py-3 pr-6 font-semibold text-navy-800">
+                  <th className="py-3 pr-6 font-semibold text-maroon-800">
                     {dict.results.passPercentage}
                   </th>
-                  <th className="py-3 font-semibold text-navy-800">{dict.results.remarks}</th>
+                  <th className="py-3 font-semibold text-maroon-800">{dict.results.remarks}</th>
                 </tr>
               </thead>
               <tbody>
                 {classXResults.map((r) => (
-                  <tr key={r.year} className="border-b border-sand-200 last:border-0">
+                  <tr key={r.year} className="border-b border-mist-200 last:border-0">
                     <td className="py-3 pr-6 tabular-nums text-ink-600">{r.year}</td>
                     <td className="py-3 pr-6 tabular-nums text-ink-500">
                       {r.registered ?? "—"}
                     </td>
                     <td className="py-3 pr-6 tabular-nums text-ink-500">{r.passed ?? "—"}</td>
-                    <td className="py-3 pr-6 font-semibold tabular-nums text-navy-800">
+                    <td className="py-3 pr-6 font-semibold tabular-nums text-maroon-800">
                       {r.passPercentage}
                     </td>
                     <td className="py-3 text-ink-500">{remarkFor(r.remarks, locale)}</td>
@@ -205,7 +205,7 @@ export default async function HomePage({
           <p className="mt-4 text-sm text-ink-500">
             <Link
               href={p("/about/disclosure")}
-              className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+              className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
             >
               {dict.home.viewDisclosure}
             </Link>
@@ -222,13 +222,13 @@ export default async function HomePage({
               {events.slice(0, 6).map((e) => (
                 <li
                   key={e.title + e.date}
-                  className="overflow-hidden rounded-lg border border-sand-200 bg-white"
+                  className="overflow-hidden rounded-lg border border-mist-200 bg-white"
                 >
-                  <span aria-hidden className="block h-1 bg-vermilion-500" />
+                  <span aria-hidden className="block h-1 bg-crimson-500" />
                   <div className="p-6">
                     <time
                       dateTime={e.date}
-                      className="text-xs font-semibold uppercase tracking-[0.12em] text-vermilion-600"
+                      className="text-xs font-semibold uppercase tracking-[0.12em] text-crimson-600"
                     >
                       {new Date(e.date).toLocaleDateString(locale === "mr" ? "mr-IN" : "en-IN", {
                         day: "numeric",
@@ -236,7 +236,7 @@ export default async function HomePage({
                         year: "numeric",
                       })}
                     </time>
-                    <h3 className="mt-2 font-display text-lg font-semibold text-navy-800">
+                    <h3 className="mt-2 font-display text-lg font-semibold text-maroon-800">
                       {e.title}
                     </h3>
                     {e.summary ? (
@@ -253,7 +253,7 @@ export default async function HomePage({
                 href={school.social.instagram}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="font-semibold text-vermilion-600 underline-offset-4 hover:underline"
+                className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
               >
                 Instagram
               </a>
@@ -264,7 +264,7 @@ export default async function HomePage({
       </Section>
 
       {/* Gallery preview */}
-      <div className="border-t border-sand-200 bg-sand-100">
+      <div className="border-t border-mist-200 bg-mist-100">
         <Section className="!py-14">
           <SectionHeading
             eyebrow={dict.home.galleryEyebrow}
@@ -275,7 +275,7 @@ export default async function HomePage({
             {featuredImages.map((img) => (
               <li
                 key={img.src}
-                className="relative aspect-4/3 overflow-hidden rounded-lg bg-sand-200 ring-1 ring-gold-500/25"
+                className="relative aspect-4/3 overflow-hidden rounded-lg bg-mist-200 ring-1 ring-gold-500/25"
               >
                 <Image
                   src={img.src}

@@ -68,7 +68,7 @@ export default async function AboutPage({
           <Prose paragraphs={page.body} />
 
           <div className="space-y-6">
-            <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-sand-200 ring-2 ring-gold-500/40">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-mist-200 ring-2 ring-gold-500/40">
               <Image
                 src={CAMPUS_IMAGE}
                 alt={
@@ -82,16 +82,16 @@ export default async function AboutPage({
               />
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-sand-200 bg-white">
+            <div className="overflow-hidden rounded-lg border border-mist-200 bg-white">
               <span aria-hidden className="block h-1 bg-gold-500" />
-              <dl className="divide-y divide-sand-200">
+              <dl className="divide-y divide-mist-200">
                 {facts.map((f) => (
                   <div
                     key={f.label}
                     className="flex items-baseline justify-between gap-4 px-5 py-3"
                   >
                     <dt className="text-sm text-ink-500">{f.label}</dt>
-                    <dd className="text-right text-sm font-medium tabular-nums text-navy-800">
+                    <dd className="text-right text-sm font-medium tabular-nums text-maroon-800">
                       {f.value}
                     </dd>
                   </div>
@@ -102,7 +102,7 @@ export default async function AboutPage({
         </div>
       </Section>
 
-      <div className="border-t border-sand-200 bg-sand-100">
+      <div className="border-t border-mist-200 bg-mist-100">
         <Section className="!py-14">
           <SectionHeading
             eyebrow={locale === "mr" ? "नेतृत्व" : "Leadership"}

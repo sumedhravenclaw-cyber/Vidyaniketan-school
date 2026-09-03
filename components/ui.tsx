@@ -20,11 +20,11 @@ export function PageHero({
   breadcrumbLabel?: string;
 }) {
   return (
-    <div className="on-navy relative bg-navy-800">
+    <div className="on-maroon relative bg-maroon-800">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
         {breadcrumb && breadcrumb.length > 0 ? (
           <nav aria-label={breadcrumbLabel} className="mb-4">
-            <ol className="flex flex-wrap items-center gap-2 text-xs text-navy-200">
+            <ol className="flex flex-wrap items-center gap-2 text-xs text-maroon-200">
               <li>
                 <Link href={homeHref} className="transition-colors hover:text-white">
                   {homeLabel}
@@ -54,15 +54,15 @@ export function PageHero({
         </h1>
         <span aria-hidden className="mt-4 block h-0.5 w-16 bg-gold-500" />
         {intro ? (
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy-100">{intro}</p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-maroon-100">{intro}</p>
         ) : null}
       </div>
 
-      {/* Crest colours close the banner, matching the header rule. */}
+      {/* Brand colours close the banner, matching the header rule. */}
       <div aria-hidden className="flex h-1">
-        <span className="w-1/2 bg-navy-600" />
+        <span className="w-1/2 bg-maroon-600" />
         <span className="w-1/4 bg-gold-500" />
-        <span className="w-1/4 bg-vermilion-500" />
+        <span className="w-1/4 bg-crimson-500" />
       </div>
     </div>
   );
@@ -94,11 +94,11 @@ export function SectionHeading({
   return (
     <div className="max-w-2xl">
       {eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-vermilion-600">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-crimson-600">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-2 font-display text-2xl font-semibold text-navy-800 sm:text-3xl">
+      <h2 className="mt-2 font-display text-2xl font-semibold text-maroon-800 sm:text-3xl">
         {title}
       </h2>
       <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold-500" />
@@ -142,11 +142,11 @@ export function Cta({
   variant?: "primary" | "secondary" | "onDark";
 }) {
   const styles = {
-    primary: "bg-vermilion-500 text-white hover:bg-vermilion-600",
+    primary: "bg-crimson-500 text-white hover:bg-crimson-600",
     secondary:
-      "border border-navy-200 bg-white text-navy-800 hover:border-gold-500 hover:text-vermilion-600",
+      "border border-maroon-200 bg-white text-maroon-800 hover:border-gold-500 hover:text-crimson-600",
     onDark:
-      "border border-gold-500/50 bg-white/10 text-white hover:bg-gold-500 hover:text-navy-900",
+      "border border-gold-500/50 bg-white/10 text-white hover:bg-gold-500 hover:text-maroon-900",
   }[variant];
 
   return (
@@ -169,7 +169,7 @@ export function Cta({
 export function EmptyState({ title, children }: { title: string; children?: ReactNode }) {
   return (
     <div className="rounded-lg border border-dashed border-gold-500/40 bg-white p-8 text-center">
-      <p className="font-display text-lg font-semibold text-navy-800">{title}</p>
+      <p className="font-display text-lg font-semibold text-maroon-800">{title}</p>
       {children ? (
         <div className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-500">
           {children}

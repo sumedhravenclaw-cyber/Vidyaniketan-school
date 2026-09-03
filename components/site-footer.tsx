@@ -26,12 +26,12 @@ export default function SiteFooter({
   ];
 
   return (
-    <footer className="on-navy mt-24 bg-navy-900 text-navy-100">
+    <footer className="on-maroon mt-24 bg-maroon-900 text-maroon-100">
       {/* Same three-colour rule as the header, mirrored. */}
       <div aria-hidden className="flex h-1">
-        <span className="w-1/4 bg-vermilion-500" />
+        <span className="w-1/4 bg-crimson-500" />
         <span className="w-1/4 bg-gold-500" />
-        <span className="w-1/2 bg-navy-600" />
+        <span className="w-1/2 bg-maroon-600" />
       </div>
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-3">
@@ -48,11 +48,11 @@ export default function SiteFooter({
             className="h-20 w-20 rounded-full ring-2 ring-gold-500/50"
           />
           <p className="deva mt-5 text-lg text-gold-400">{school.motto.sanskrit}</p>
-          <p className="mt-1 text-sm text-navy-200">{school.motto.translation}</p>
+          <p className="mt-1 text-sm text-maroon-200">{school.motto.translation}</p>
           <h2 className="mt-4 font-display text-xl font-semibold text-white">
             {school.name}
           </h2>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-navy-200">
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-maroon-200">
             {dict.home.heroLead}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function SiteFooter({
           <ul className="mt-4 space-y-2 text-sm">
             {quickLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-navy-200 transition-colors hover:text-white">
+                <Link href={l.href} className="text-maroon-200 transition-colors hover:text-white">
                   {l.label}
                 </Link>
               </li>
@@ -78,7 +78,7 @@ export default function SiteFooter({
             {dict.common.contactHeading}
           </h3>
           <span aria-hidden className="mt-2 block h-0.5 w-10 bg-gold-500" />
-          <address className="mt-4 space-y-3 text-sm not-italic text-navy-200">
+          <address className="mt-4 space-y-3 text-sm not-italic text-maroon-200">
             <p className="leading-relaxed">
               {a.line1}
               <br />
@@ -104,8 +104,8 @@ export default function SiteFooter({
                 {school.email}
               </a>
             </p>
-            <p className="text-navy-200">{school.officeHours}</p>
-            <p className="text-navy-200">{dict.common.sundayClosed}</p>
+            <p className="text-maroon-200">{school.officeHours}</p>
+            <p className="text-maroon-200">{dict.common.sundayClosed}</p>
           </address>
 
           <div className="mt-5 flex gap-4 text-sm">
@@ -114,7 +114,7 @@ export default function SiteFooter({
                 href={school.social.instagram}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-navy-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+                className="text-maroon-200 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 Instagram
               </a>
@@ -124,7 +124,7 @@ export default function SiteFooter({
                 href={school.social.youtube}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-navy-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+                className="text-maroon-200 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 YouTube
               </a>
@@ -133,8 +133,8 @@ export default function SiteFooter({
         </div>
       </div>
 
-      <div className="border-t border-navy-700">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-5 text-xs text-navy-200">
+      <div className="border-t border-maroon-700">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-5 text-xs text-maroon-200">
           <p>
             &copy; {new Date().getFullYear()} {school.name}. {dict.common.allRightsReserved}
           </p>
