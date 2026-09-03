@@ -142,6 +142,18 @@ export default function SiteFooter({
             {dict.common.affiliationNo} {school.affiliationNo} &middot;{" "}
             {dict.common.schoolCode} {school.schoolCode}
           </p>
+          <p>
+            {dict.common.developedBy}{" "}
+            <a
+              href="https://www.digitalravenclaw.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="underline-offset-4 transition-colors hover:text-white hover:underline"
+            >
+              Digital Ravenclaw
+              <span className="sr-only">{dict.common.opensInNewTab}</span>
+            </a>
+          </p>
         </div>
       </div>
     </footer>

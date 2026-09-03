@@ -37,8 +37,17 @@ export default async function HomePage({
 
   return (
     <>
-      {/* Hero */}
-      <section className="on-maroon relative isolate overflow-hidden bg-maroon-900">
+      {/*
+        Hero. The hero box is floored at a fixed height per breakpoint rather than
+        left to size itself from the copy. Marathi sets far shorter than English
+        here — the name fits on one line instead of two, the lead in two lines
+        instead of three — which changed the section's aspect ratio and so
+        changed how `object-cover` scaled and cropped the building behind it.
+        The two locales showed visibly different crops of the same photograph.
+        These floors are the English heights, so English is unchanged and
+        Marathi rises to meet it; revisit them if the English hero copy changes.
+      */}
+      <section className="on-maroon relative isolate flex min-h-[765px] items-center overflow-hidden bg-maroon-900 sm:min-h-[802px] lg:min-h-[551px]">
         <Image
           src={HERO_IMAGE}
           alt=""
@@ -55,7 +64,7 @@ export default async function HomePage({
           className="absolute inset-0 bg-linear-to-r from-maroon-900/90 via-maroon-900/55 to-transparent"
         />
 
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:py-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+        <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-20 sm:py-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
           <div>
             {/* The crest is in the header on every page, this one included, so
                 it is not repeated here — the building is the hero image. */}

@@ -51,6 +51,7 @@ export type Dictionary = {
     affiliationNo: string;
     schoolCode: string;
     allRightsReserved: string;
+    developedBy: string;
     photograph: string;
     photographs: string;
   };
@@ -195,6 +196,7 @@ const en: Dictionary = {
     affiliationNo: "Affiliation number",
     schoolCode: "School code",
     allRightsReserved: "All rights reserved.",
+    developedBy: "Developed by",
     photograph: "photograph",
     photographs: "photographs",
   },
@@ -350,6 +352,7 @@ const mr: Dictionary = {
     affiliationNo: "संलग्नता क्रमांक",
     schoolCode: "शाळा संकेतांक",
     allRightsReserved: "सर्व हक्क राखीव.",
+    developedBy: "संकेतस्थळ विकसन:",
     photograph: "छायाचित्र",
     photographs: "छायाचित्रे",
   },
