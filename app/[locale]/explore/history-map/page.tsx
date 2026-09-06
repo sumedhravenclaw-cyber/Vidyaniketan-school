@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WorldHistoryMap from "@/components/world-history-map";
+import LivingHistoryAtlas from "@/components/living-history-atlas";
 import { PageHero, Section } from "@/components/ui";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -56,7 +56,7 @@ export default async function HistoryMapPage({
 
       <Section>
         {/* The hero already carries the title, so the component's own is suppressed. */}
-        <WorldHistoryMap showIntro={false} />
+        <LivingHistoryAtlas showIntro={false} />
       </Section>
     </>
   );
