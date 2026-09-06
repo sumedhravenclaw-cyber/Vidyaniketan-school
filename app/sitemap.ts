@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/explore", priority: 0.7 },
     { path: "/explore/climate-tracker", priority: 0.6 },
     { path: "/explore/ai-hub", priority: 0.6 },
+    { path: "/explore/timeline", priority: 0.6 },
     { path: "/gallery", priority: 0.7 },
     { path: "/contact", priority: 0.8 },
     ...contentPages

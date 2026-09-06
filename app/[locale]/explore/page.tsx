@@ -45,6 +45,12 @@ export default async function ExplorePage({
       body: dict.explore.aiHubCard,
       eyebrow: dict.aiHub.eyebrow,
     },
+    {
+      href: "/" + locale + "/explore/timeline",
+      title: dict.nav.timeline,
+      body: dict.explore.timelineCard,
+      eyebrow: dict.timeline.eyebrow,
+    },
   ];
 
   return (
@@ -60,7 +66,7 @@ export default async function ExplorePage({
       />
 
       <Section>
-        <ul className="grid gap-6 md:grid-cols-2">
+        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {tools.map((tool) => (
             <li key={tool.href} className="overflow-hidden rounded-lg border border-mist-200 bg-white">
               <span aria-hidden className="block h-1 bg-crimson-500" />

@@ -29,6 +29,7 @@ export type Dictionary = {
     allExplore: string;
     climateTracker: string;
     aiHub: string;
+    timeline: string;
     gallery: string;
     contact: string;
     menu: string;
@@ -157,6 +158,7 @@ export type Dictionary = {
     intro: string;
     climateCard: string;
     aiHubCard: string;
+    timelineCard: string;
     open: string;
   };
   climateTracker: {
@@ -168,6 +170,10 @@ export type Dictionary = {
     eyebrow: string;
     intro: string;
     classroomNote: string;
+  };
+  timeline: {
+    eyebrow: string;
+    intro: string;
   };
   notFound: {
     title: string;
@@ -195,6 +201,7 @@ const en: Dictionary = {
     allExplore: "All Learning Tools",
     climateTracker: "Climate Tracker",
     aiHub: "AI Maths & Science Hub",
+    timeline: "World History Timeline",
     gallery: "Gallery",
     contact: "Contact Us",
     menu: "Menu",
@@ -337,6 +344,8 @@ const en: Dictionary = {
       "Live climate, forest, orbital and energy figures, each card naming where its number came from.",
     aiHubCard:
       "Interactive formulas, a scientific calculator, a coding animation playground, and a science news feed.",
+    timelineCard:
+      "Pick a moment in history and see Asia, Europe, the Americas and Africa side by side, instead of one region at a time.",
     open: "Open",
   },
   climateTracker: {
@@ -352,6 +361,11 @@ const en: Dictionary = {
       "Work through formulas, calculate, watch code become animation, and read a science feed — four tools on one page.",
     classroomNote:
       "The playground runs the code a student types, so it is a safe place to experiment: nothing is saved and a mistake only affects that browser tab. The news items are written as classroom examples, not real reporting.",
+  },
+  timeline: {
+    eyebrow: "World history",
+    intro:
+      "Pick a moment in history and see what four regions of the world were doing at the very same time.",
   },
   notFound: {
     title: "We could not find that page",
@@ -379,6 +393,7 @@ const mr: Dictionary = {
     allExplore: "सर्व साधने",
     climateTracker: "हवामान ट्रॅकर",
     aiHub: "एआय गणित व विज्ञान केंद्र",
+    timeline: "जागतिक इतिहास कालरेषा",
     gallery: "छायाचित्र दालन",
     contact: "संपर्क",
     menu: "मेनू",
@@ -521,6 +536,8 @@ const mr: Dictionary = {
       "हवामान, जंगल, अवकाश आणि ऊर्जेचे थेट आकडे; प्रत्येक कार्डावर तो आकडा कोठून आला हे नमूद केलेले.",
     aiHubCard:
       "संवादात्मक सूत्रे, वैज्ञानिक कॅल्क्युलेटर, कोडिंग अ‍ॅनिमेशन प्लेग्राउंड आणि विज्ञान वार्तापत्र.",
+    timelineCard:
+      "इतिहासातील एक क्षण निवडा आणि आशिया, युरोप, अमेरिका व आफ्रिका एकाच वेळी शेजारी पाहा — एका वेळी एकच प्रदेश नव्हे.",
     open: "उघडा",
   },
   climateTracker: {
@@ -536,6 +553,11 @@ const mr: Dictionary = {
       "सूत्रे सोडवा, गणना करा, कोडचे अ‍ॅनिमेशनमध्ये रूपांतर पाहा आणि विज्ञान वार्ता वाचा — एकाच पानावर चार साधने.",
     classroomNote:
       "प्लेग्राउंड विद्यार्थ्याने लिहिलेला कोड चालवते, त्यामुळे प्रयोग करण्यासाठी ते सुरक्षित आहे: काहीही जतन होत नाही आणि चूक फक्त त्याच ब्राउझर टॅबपुरती मर्यादित राहते. वार्ता वर्गातील उदाहरणे म्हणून लिहिलेल्या आहेत, प्रत्यक्ष बातम्या नाहीत.",
+  },
+  timeline: {
+    eyebrow: "जागतिक इतिहास",
+    intro:
+      "इतिहासातील एक क्षण निवडा आणि नेमक्या त्याच काळात जगाचे चार प्रदेश काय करत होते ते पाहा.",
   },
   notFound: {
     title: "ते पृष्ठ सापडले नाही",
