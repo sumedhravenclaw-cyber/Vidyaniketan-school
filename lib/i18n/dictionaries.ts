@@ -30,6 +30,8 @@ export type Dictionary = {
     climateTracker: string;
     aiHub: string;
     timeline: string;
+    timeTravel: string;
+    historyMap: string;
     gallery: string;
     contact: string;
     menu: string;
@@ -159,6 +161,8 @@ export type Dictionary = {
     climateCard: string;
     aiHubCard: string;
     timelineCard: string;
+    timeTravelCard: string;
+    historyMapCard: string;
     open: string;
   };
   climateTracker: {
@@ -172,6 +176,14 @@ export type Dictionary = {
     classroomNote: string;
   };
   timeline: {
+    eyebrow: string;
+    intro: string;
+  };
+  timeTravel: {
+    eyebrow: string;
+    intro: string;
+  };
+  historyMap: {
     eyebrow: string;
     intro: string;
   };
@@ -202,6 +214,8 @@ const en: Dictionary = {
     climateTracker: "Climate Tracker",
     aiHub: "AI Maths & Science Hub",
     timeline: "World History Timeline",
+    timeTravel: "Step Into History",
+    historyMap: "History Map",
     gallery: "Gallery",
     contact: "Contact Us",
     menu: "Menu",
@@ -346,6 +360,10 @@ const en: Dictionary = {
       "Interactive formulas, a scientific calculator, a coding animation playground, and a science news feed.",
     timelineCard:
       "Pick a moment in history and see Asia, Europe, the Americas and Africa side by side, instead of one region at a time.",
+    timeTravelCard:
+      "Step inside four eras \u2014 Ancient Egypt, Renaissance Italy, the Industrial Revolution and an imagined 2100 \u2014 and explore each scene.",
+    historyMapCard:
+      "Press play and watch six regions of the world change colour across 5,000 years, with milestones and population as they go.",
     open: "Open",
   },
   climateTracker: {
@@ -366,6 +384,16 @@ const en: Dictionary = {
     eyebrow: "World history",
     intro:
       "Pick a moment in history and see what four regions of the world were doing at the very same time.",
+  },
+  timeTravel: {
+    eyebrow: "Step inside",
+    intro:
+      "Choose a period and step into it. Each scene is drawn from colour and shape rather than photographs \u2014 the facts on the markers are the real part.",
+  },
+  historyMap: {
+    eyebrow: "World history",
+    intro:
+      "Move the slider from 3000 BCE to today and watch six regions change together. Hover a region to see who was there; click to look closer.",
   },
   notFound: {
     title: "We could not find that page",
@@ -394,6 +422,8 @@ const mr: Dictionary = {
     climateTracker: "हवामान ट्रॅकर",
     aiHub: "एआय गणित व विज्ञान केंद्र",
     timeline: "जागतिक इतिहास कालरेषा",
+    timeTravel: "इतिहासात पाऊल टाका",
+    historyMap: "इतिहास नकाशा",
     gallery: "छायाचित्र दालन",
     contact: "संपर्क",
     menu: "मेनू",
@@ -538,6 +568,10 @@ const mr: Dictionary = {
       "संवादात्मक सूत्रे, वैज्ञानिक कॅल्क्युलेटर, कोडिंग अ‍ॅनिमेशन प्लेग्राउंड आणि विज्ञान वार्तापत्र.",
     timelineCard:
       "इतिहासातील एक क्षण निवडा आणि आशिया, युरोप, अमेरिका व आफ्रिका एकाच वेळी शेजारी पाहा — एका वेळी एकच प्रदेश नव्हे.",
+    timeTravelCard:
+      "चार कालखंडांत पाऊल टाका \u2014 प्राचीन इजिप्त, प्रबोधनकालीन इटली, औद्योगिक क्रांती आणि कल्पित २१०० \u2014 आणि प्रत्येक दृश्य पाहा.",
+    historyMapCard:
+      "प्ले दाबा आणि ५,००० वर्षांत जगाचे सहा प्रदेश कसे बदलत गेले ते नकाशावर पाहा \u2014 सोबत टप्पे आणि लोकसंख्या.",
     open: "उघडा",
   },
   climateTracker: {
@@ -558,6 +592,16 @@ const mr: Dictionary = {
     eyebrow: "जागतिक इतिहास",
     intro:
       "इतिहासातील एक क्षण निवडा आणि नेमक्या त्याच काळात जगाचे चार प्रदेश काय करत होते ते पाहा.",
+  },
+  timeTravel: {
+    eyebrow: "आत पाऊल टाका",
+    intro:
+      "एक कालखंड निवडा आणि त्यात पाऊल टाका. प्रत्येक दृश्य छायाचित्रांऐवजी रंग आणि आकारांनी रेखाटलेले आहे \u2014 खुणांवरील माहिती हा खरा भाग आहे.",
+  },
+  historyMap: {
+    eyebrow: "जागतिक इतिहास",
+    intro:
+      "ख्रिस्तपूर्व ३००० पासून आजपर्यंत स्लायडर फिरवा आणि सहा प्रदेश एकत्र बदलताना पाहा. प्रदेशावर माउस न्या, अधिक माहितीसाठी क्लिक करा.",
   },
   notFound: {
     title: "ते पृष्ठ सापडले नाही",

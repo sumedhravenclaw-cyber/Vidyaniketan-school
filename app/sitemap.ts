@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/explore/climate-tracker", priority: 0.6 },
     { path: "/explore/ai-hub", priority: 0.6 },
     { path: "/explore/timeline", priority: 0.6 },
+    { path: "/explore/time-travel", priority: 0.6 },
+    { path: "/explore/history-map", priority: 0.6 },
     { path: "/gallery", priority: 0.7 },
     { path: "/contact", priority: 0.8 },
     ...contentPages

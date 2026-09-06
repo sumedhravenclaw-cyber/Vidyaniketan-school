@@ -789,21 +789,31 @@ export default function HistoricalTimeline({
         would force overflow-y to auto and crop them. The -mx-2/px-2 pair gives
         the shadow room without shifting the grid.
       */}
+      <noscript>
+        {/* Without JavaScript nothing ever animates these back into view. */}
+        <style>{`[data-era-panel]{opacity:1!important;transform:none!important}
+                 [data-region-card]{opacity:1!important;transform:none!important}`}</style>
+      </noscript>
+
       <div className="relative -mx-2 mt-6 overflow-x-clip px-2 py-2">
         {/*
-          `initial={false}` is deliberate: the first paint renders in the
-          finished state. Animating in on mount would ship the server-rendered
-          HTML at opacity 0, so a student on a slow connection -- or with
-          scripts blocked -- stares at an empty page. Every era change after
-          that animates in full.
+          The first panel animates in as well, so the effect is visible on page
+          load and not only after clicking an era.
+
+          The cost is that Framer writes opacity:0 into the server-rendered
+          HTML, which would leave a blank grid for anyone whose JavaScript
+          never arrives. The <noscript> block above restores it for them -- it
+          only takes effect when scripts are off, so it costs nothing
+          otherwise.
         */}
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait">
           <motion.div
             key={era.id}
             role="tabpanel"
             id={"era-panel-" + era.id}
             aria-labelledby={"era-tab-" + era.id}
             tabIndex={0}
+            data-era-panel=""
             variants={gridVariants}
             initial="hidden"
             animate="show"
@@ -819,6 +829,7 @@ export default function HistoricalTimeline({
               {REGIONS.map((region) => (
                 <motion.section
                   key={region.id}
+                  data-region-card=""
                   variants={cardVariants}
                   {...cardHover}
                   // A resting shadow so the hover value has something to

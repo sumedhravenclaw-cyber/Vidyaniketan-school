@@ -54,6 +54,8 @@ export function buildNavigation(locale: string, dict: Dictionary): NavItem[] {
         { label: n.climateTracker, href: p("/explore/climate-tracker") },
         { label: n.aiHub, href: p("/explore/ai-hub") },
         { label: n.timeline, href: p("/explore/timeline") },
+        { label: n.timeTravel, href: p("/explore/time-travel") },
+        { label: n.historyMap, href: p("/explore/history-map") },
       ],
     },
     { label: n.gallery, href: p("/gallery") },

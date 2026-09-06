@@ -51,6 +51,18 @@ export default async function ExplorePage({
       body: dict.explore.timelineCard,
       eyebrow: dict.timeline.eyebrow,
     },
+    {
+      href: "/" + locale + "/explore/time-travel",
+      title: dict.nav.timeTravel,
+      body: dict.explore.timeTravelCard,
+      eyebrow: dict.timeTravel.eyebrow,
+    },
+    {
+      href: "/" + locale + "/explore/history-map",
+      title: dict.nav.historyMap,
+      body: dict.explore.historyMapCard,
+      eyebrow: dict.historyMap.eyebrow,
+    },
   ];
 
   return (
@@ -66,7 +78,7 @@ export default async function ExplorePage({
       />
 
       <Section>
-        <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {tools.map((tool) => (
             <li key={tool.href} className="overflow-hidden rounded-lg border border-mist-200 bg-white">
               <span aria-hidden className="block h-1 bg-crimson-500" />
