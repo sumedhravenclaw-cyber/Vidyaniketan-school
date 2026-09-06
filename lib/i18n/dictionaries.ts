@@ -25,6 +25,10 @@ export type Dictionary = {
     allFacilities: string;
     admissions: string;
     circulars: string;
+    explore: string;
+    allExplore: string;
+    climateTracker: string;
+    aiHub: string;
     gallery: string;
     contact: string;
     menu: string;
@@ -148,6 +152,23 @@ export type Dictionary = {
     lookingFor: string;
     contactOffice: string;
   };
+  explore: {
+    eyebrow: string;
+    intro: string;
+    climateCard: string;
+    aiHubCard: string;
+    open: string;
+  };
+  climateTracker: {
+    eyebrow: string;
+    intro: string;
+    classroomNote: string;
+  };
+  aiHub: {
+    eyebrow: string;
+    intro: string;
+    classroomNote: string;
+  };
   notFound: {
     title: string;
     body: string;
@@ -170,6 +191,10 @@ const en: Dictionary = {
     allFacilities: "All Facilities",
     admissions: "Admissions",
     circulars: "Circulars & Events",
+    explore: "Explore",
+    allExplore: "All Learning Tools",
+    climateTracker: "Climate Tracker",
+    aiHub: "AI Maths & Science Hub",
     gallery: "Gallery",
     contact: "Contact Us",
     menu: "Menu",
@@ -304,6 +329,30 @@ const en: Dictionary = {
     lookingFor: "Looking for something specific?",
     contactOffice: "Contact the school office",
   },
+  explore: {
+    eyebrow: "Learning tools",
+    intro:
+      "Interactive tools students can open in class or at home — built to be poked at, changed, and argued with rather than just read.",
+    climateCard:
+      "Live climate, forest, orbital and energy figures, each card naming where its number came from.",
+    aiHubCard:
+      "Interactive formulas, a scientific calculator, a coding animation playground, and a science news feed.",
+    open: "Open",
+  },
+  climateTracker: {
+    eyebrow: "Global awareness",
+    intro:
+      "Four numbers that describe the planet our students are inheriting — tracked live where the data allows it, and clearly marked as an estimate where it does not.",
+    classroomNote:
+      "Built for classroom discussion. Each card names where its number came from, so students can practise asking that question before believing a figure.",
+  },
+  aiHub: {
+    eyebrow: "Maths & science",
+    intro:
+      "Work through formulas, calculate, watch code become animation, and read a science feed — four tools on one page.",
+    classroomNote:
+      "The playground runs the code a student types, so it is a safe place to experiment: nothing is saved and a mistake only affects that browser tab. The news items are written as classroom examples, not real reporting.",
+  },
   notFound: {
     title: "We could not find that page",
     body: "The link may be out of date. These are the pages people most often need:",
@@ -326,6 +375,10 @@ const mr: Dictionary = {
     allFacilities: "सर्व सुविधा",
     admissions: "प्रवेश",
     circulars: "परिपत्रके व कार्यक्रम",
+    explore: "शिकण्याची साधने",
+    allExplore: "सर्व साधने",
+    climateTracker: "हवामान ट्रॅकर",
+    aiHub: "एआय गणित व विज्ञान केंद्र",
     gallery: "छायाचित्र दालन",
     contact: "संपर्क",
     menu: "मेनू",
@@ -459,6 +512,30 @@ const mr: Dictionary = {
       "शाळा कार्यक्रम, प्रार्थनासभा आणि उत्सवांच्या चित्रफिती स्वतःच्या माध्यमांवर प्रसिद्ध करते.",
     lookingFor: "काही विशिष्ट शोधत आहात?",
     contactOffice: "शाळेच्या कार्यालयाशी संपर्क साधा",
+  },
+  explore: {
+    eyebrow: "शिकण्याची साधने",
+    intro:
+      "वर्गात किंवा घरी उघडता येतील अशी संवादात्मक साधने — केवळ वाचण्यासाठी नव्हे, तर हाताळण्यासाठी, बदलण्यासाठी आणि प्रश्न विचारण्यासाठी तयार केलेली.",
+    climateCard:
+      "हवामान, जंगल, अवकाश आणि ऊर्जेचे थेट आकडे; प्रत्येक कार्डावर तो आकडा कोठून आला हे नमूद केलेले.",
+    aiHubCard:
+      "संवादात्मक सूत्रे, वैज्ञानिक कॅल्क्युलेटर, कोडिंग अ‍ॅनिमेशन प्लेग्राउंड आणि विज्ञान वार्तापत्र.",
+    open: "उघडा",
+  },
+  climateTracker: {
+    eyebrow: "जागतिक जाणीव",
+    intro:
+      "आपले विद्यार्थी ज्या पृथ्वीचा वारसा घेत आहेत ती सांगणारे चार आकडे — जिथे शक्य आहे तिथे थेट आकडेवारी, आणि जिथे नाही तिथे स्पष्टपणे अंदाज म्हणून नोंदवलेले.",
+    classroomNote:
+      "वर्गातील चर्चेसाठी तयार केलेले. प्रत्येक कार्डावर त्याचा आकडा कोठून आला हे नमूद केले आहे, जेणेकरून विद्यार्थ्यांना आकडा स्वीकारण्यापूर्वी हा प्रश्न विचारण्याची सवय लागेल.",
+  },
+  aiHub: {
+    eyebrow: "गणित व विज्ञान",
+    intro:
+      "सूत्रे सोडवा, गणना करा, कोडचे अ‍ॅनिमेशनमध्ये रूपांतर पाहा आणि विज्ञान वार्ता वाचा — एकाच पानावर चार साधने.",
+    classroomNote:
+      "प्लेग्राउंड विद्यार्थ्याने लिहिलेला कोड चालवते, त्यामुळे प्रयोग करण्यासाठी ते सुरक्षित आहे: काहीही जतन होत नाही आणि चूक फक्त त्याच ब्राउझर टॅबपुरती मर्यादित राहते. वार्ता वर्गातील उदाहरणे म्हणून लिहिलेल्या आहेत, प्रत्यक्ष बातम्या नाहीत.",
   },
   notFound: {
     title: "ते पृष्ठ सापडले नाही",

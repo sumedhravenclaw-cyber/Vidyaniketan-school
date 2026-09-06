@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Maths &amp; Science Hub</title>
+
+<!-- Tailwind (play CDN) ---------------------------------------------------->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          maroon:  { 50:'#fdf3f3', 100:'#f7dcdc', 200:'#e8b4b4', 600:'#7f0000', 700:'#660202', 800:'#560202', 900:'#3a0101' },
+          crimson: { 50:'#fdf2f2', 100:'#fbdada', 500:'#c1121f', 600:'#a30f1a', 700:'#850d15' },
+          gold:    { 400:'#ffd306', 500:'#d4a600', 600:'#8a6d00' },
+          mist:    { 50:'#fafafc', 100:'#f6f7fd', 200:'#e5e6ef' },
+          ink:     { 500:'#6b6b75', 600:'#4a4a53', 900:'#26262c' }
+        },
+        fontFamily: {
+          sans: ['Montserrat', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+          mono: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'Menlo', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root { color-scheme: light; }
+  body { background: #f6f7fd; }
+
+  /* Tab panels: only the active one is in flow, so the entrance animation
+     starts from a real layout instead of fighting a collapsed box. */
+  .panel { display: none; }
+  .panel.is-active { display: block; animation: panelIn .3s cubic-bezier(.22,.61,.36,1) both; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+
+  .card { transition: box-shadow .2s ease, transform .2s ease; }
+  .card:hover { transform: translateY(-2px); }
+
+  /* A single, visible focus treatment everywhere — students navigating by
+     keyboard should never lose their place. */
+  :focus-visible { outline: 3px solid #c1121f; outline-offset: 2px; border-radius: 6px; }
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button { opacity: .4; }
+
+  .kbd { touch-action: manipulation; user-select: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel.is-active { animation: none; }
+    .card:hover { transform: none; }
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+
+<body class="font-sans text-ink-900 antialiased">
+
+<div class="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
+
+  <!-- ================= HEADER ================= -->
+  <header class="mb-6 rounded-2xl bg-maroon-800 px-5 py-6 text-white shadow-lg sm:px-8 sm:py-8">
+    <p class="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold-400">Student Learning Tools</p>
+    <h1 class="text-2xl font-bold leading-tight sm:text-3xl">AI Maths &amp; Science Hub</h1>
+    <p class="mt-2 max-w-2xl text-sm leading-relaxed text-maroon-100 sm:text-base">
+      Try the formulas, work out an answer on the scientific calculator, watch code turn into
+      animation, and catch up on the science feed — all in one place.
+    </p>
+  </header>
+
+  <!-- ================= TABS ================= -->
+  <div class="relative mb-6">
+    <div role="tablist" aria-label="Hub sections"
+         class="flex gap-1 overflow-x-auto rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-mist-200 sm:gap-2">
+
+      <button role="tab" id="tab-formulas" aria-controls="panel-formulas" aria-selected="true" tabindex="0"
+              class="tab-btn flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors duration-200 sm:px-4 sm:text-base">
+        <span aria-hidden="true">📐</span> <span class="hidden sm:inline">Formulas</span><span class="sm:hidden">Formulas</span>
+      </button>
+
+      <button role="tab" id="tab-calculator" aria-controls="panel-calculator" aria-selected="false" tabindex="-1"
+              class="tab-btn flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors duration-200 sm:px-4 sm:text-base">
+        <span aria-hidden="true">🧮</span> Calculator
+      </button>
+
+      <button role="tab" id="tab-playground" aria-controls="panel-playground" aria-selected="false" tabindex="-1"
+              class="tab-btn flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors duration-200 sm:px-4 sm:text-base">
+        <span aria-hidden="true">🎨</span> <span class="hidden sm:inline">Coding </span>Playground
+      </button>
+
+      <button role="tab" id="tab-news" aria-controls="panel-news" aria-selected="false" tabindex="-1"
+              class="tab-btn flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors duration-200 sm:px-4 sm:text-base">
+        <span aria-hidden="true">🛰️</span> <span class="hidden sm:inline">Science </span>News
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= PANEL 1 — FORMULAS ================= -->
+  <section id="panel-formulas" role="tabpanel" aria-labelledby="tab-formulas" tabindex="0" class="panel is-active focus:outline-none">
+
+    <h2 class="mb-1 text-lg font-bold sm:text-xl">Interactive Formulas Dashboard</h2>
+    <p class="mb-5 text-sm text-ink-500">Type a value into any box — the answer updates as you type.</p>
+
+    <div class="grid gap-5 md:grid-cols-2">
+
+      <!-- Algebra -->
+      <article class="card rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200 hover:shadow-md">
+        <div class="mb-3 flex items-center gap-2">
+          <span class="rounded-lg bg-crimson-50 px-2 py-1 text-xs font-bold uppercase tracking-wider text-crimson-700">Algebra</span>
+          <h3 class="text-base font-bold">Quadratic Formula</h3>
+        </div>
+        <p class="mb-4 rounded-lg bg-mist-100 px-3 py-2 text-center font-mono text-sm text-ink-900">
+          x = ( −b ± √(b² − 4ac) ) / 2a
+        </p>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label for="q-a" class="mb-1 block text-xs font-semibold text-ink-600">a (x² term)</label>
+            <input id="q-a" type="number" step="any" value="1" placeholder="e.g. 1"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+          <div>
+            <label for="q-b" class="mb-1 block text-xs font-semibold text-ink-600">b (x term)</label>
+            <input id="q-b" type="number" step="any" value="-5" placeholder="e.g. -5"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+          <div>
+            <label for="q-c" class="mb-1 block text-xs font-semibold text-ink-600">c (constant)</label>
+            <input id="q-c" type="number" step="any" value="6" placeholder="e.g. 6"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+        </div>
+        <output id="q-out" for="q-a q-b q-c" aria-live="polite"
+                class="mt-4 block rounded-lg bg-maroon-800 px-4 py-3 text-sm font-semibold text-white"></output>
+      </article>
+
+      <!-- Geometry -->
+      <article class="card rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200 hover:shadow-md">
+        <div class="mb-3 flex items-center gap-2">
+          <span class="rounded-lg bg-crimson-50 px-2 py-1 text-xs font-bold uppercase tracking-wider text-crimson-700">Geometry</span>
+          <h3 class="text-base font-bold">Circle: Area &amp; Circumference</h3>
+        </div>
+        <p class="mb-4 rounded-lg bg-mist-100 px-3 py-2 text-center font-mono text-sm text-ink-900">
+          A = πr²&nbsp;&nbsp;·&nbsp;&nbsp;C = 2πr
+        </p>
+        <div>
+          <label for="g-r" class="mb-1 block text-xs font-semibold text-ink-600">Radius (cm)</label>
+          <input id="g-r" type="number" step="any" min="0" value="5" placeholder="Type a radius, e.g. 5"
+                 class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+        </div>
+        <output id="g-out" for="g-r" aria-live="polite"
+                class="mt-4 block rounded-lg bg-maroon-800 px-4 py-3 text-sm font-semibold text-white"></output>
+      </article>
+
+      <!-- Calculus -->
+      <article class="card rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200 hover:shadow-md">
+        <div class="mb-3 flex items-center gap-2">
+          <span class="rounded-lg bg-crimson-50 px-2 py-1 text-xs font-bold uppercase tracking-wider text-crimson-700">Calculus</span>
+          <h3 class="text-base font-bold">Power Rule Derivative</h3>
+        </div>
+        <p class="mb-4 rounded-lg bg-mist-100 px-3 py-2 text-center font-mono text-sm text-ink-900">
+          f(x) = a·xⁿ&nbsp;&nbsp;→&nbsp;&nbsp;f′(x) = a·n·xⁿ⁻¹
+        </p>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label for="c-a" class="mb-1 block text-xs font-semibold text-ink-600">a (coefficient)</label>
+            <input id="c-a" type="number" step="any" value="3" placeholder="e.g. 3"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+          <div>
+            <label for="c-n" class="mb-1 block text-xs font-semibold text-ink-600">n (power)</label>
+            <input id="c-n" type="number" step="any" value="4" placeholder="e.g. 4"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+          <div>
+            <label for="c-x" class="mb-1 block text-xs font-semibold text-ink-600">x (value)</label>
+            <input id="c-x" type="number" step="any" value="2" placeholder="e.g. 2"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+        </div>
+        <output id="c-out" for="c-a c-n c-x" aria-live="polite"
+                class="mt-4 block rounded-lg bg-maroon-800 px-4 py-3 text-sm font-semibold text-white"></output>
+      </article>
+
+      <!-- Physics -->
+      <article class="card rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200 hover:shadow-md">
+        <div class="mb-3 flex items-center gap-2">
+          <span class="rounded-lg bg-crimson-50 px-2 py-1 text-xs font-bold uppercase tracking-wider text-crimson-700">Physics</span>
+          <h3 class="text-base font-bold">Newton's Second Law</h3>
+        </div>
+        <p class="mb-4 rounded-lg bg-mist-100 px-3 py-2 text-center font-mono text-sm text-ink-900">
+          F = m × a
+        </p>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="p-m" class="mb-1 block text-xs font-semibold text-ink-600">Mass — m (kg)</label>
+            <input id="p-m" type="number" step="any" min="0" value="12" placeholder="e.g. 12"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+          <div>
+            <label for="p-a" class="mb-1 block text-xs font-semibold text-ink-600">Acceleration — a (m/s²)</label>
+            <input id="p-a" type="number" step="any" value="9.8" placeholder="e.g. 9.8"
+                   class="w-full rounded-lg border border-mist-200 px-3 py-2 text-sm focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+          </div>
+        </div>
+        <output id="p-out" for="p-m p-a" aria-live="polite"
+                class="mt-4 block rounded-lg bg-maroon-800 px-4 py-3 text-sm font-semibold text-white"></output>
+      </article>
+    </div>
+
+    <!-- Quick reference -->
+    <div class="mt-5 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200">
+      <h3 class="mb-3 text-base font-bold">Quick Reference</h3>
+      <dl class="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Pythagoras</dt><dd class="font-mono">a² + b² = c²</dd></div>
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Sphere volume</dt><dd class="font-mono">V = 4/3·πr³</dd></div>
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Kinetic energy</dt><dd class="font-mono">KE = ½mv²</dd></div>
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Ohm's law</dt><dd class="font-mono">V = IR</dd></div>
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Speed</dt><dd class="font-mono">v = d / t</dd></div>
+        <div class="flex justify-between gap-3 border-b border-mist-100 py-1"><dt class="text-ink-600">Density</dt><dd class="font-mono">ρ = m / V</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= PANEL 2 — CALCULATOR ================= -->
+  <section id="panel-calculator" role="tabpanel" aria-labelledby="tab-calculator" tabindex="0" class="panel focus:outline-none">
+
+    <h2 class="mb-1 text-lg font-bold sm:text-xl">Scientific Calculator</h2>
+    <p class="mb-5 text-sm text-ink-500">Tap the keys or type directly into the box, then press <kbd class="rounded bg-mist-200 px-1.5 py-0.5 font-mono text-xs">Enter</kbd>.</p>
+
+    <div class="mx-auto max-w-md rounded-2xl bg-white p-4 shadow-sm ring-1 ring-mist-200 sm:p-5">
+
+      <div class="mb-3 flex items-center justify-between gap-3">
+        <label for="calc-input" class="text-xs font-semibold text-ink-600">Expression</label>
+        <button id="calc-angle" type="button" aria-pressed="false"
+                class="rounded-lg bg-mist-100 px-3 py-1 text-xs font-bold text-maroon-800 ring-1 ring-mist-200 transition-colors hover:bg-mist-200">
+          Angle: DEG
+        </button>
+      </div>
+
+      <input id="calc-input" type="text" inputmode="text" autocomplete="off" spellcheck="false"
+             placeholder="e.g.  sin(30) + √(16) × 2"
+             class="w-full rounded-xl border border-mist-200 bg-mist-50 px-4 py-3 text-right font-mono text-lg focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+
+      <output id="calc-out" for="calc-input" aria-live="polite"
+              class="mt-2 block min-h-[3rem] rounded-xl bg-maroon-800 px-4 py-3 text-right font-mono text-xl font-bold text-white">0</output>
+
+      <div id="calc-keys" class="mt-4 grid grid-cols-5 gap-2">
+        <!-- keys injected by script -->
+      </div>
+
+      <p class="mt-3 text-center text-xs text-ink-500">
+        Functions: sin, cos, tan, asin, acos, atan, ln, log, sqrt, abs · Constants: π, e
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PANEL 3 — PLAYGROUND ================= -->
+  <section id="panel-playground" role="tabpanel" aria-labelledby="tab-playground" tabindex="0" class="panel focus:outline-none">
+
+    <h2 class="mb-1 text-lg font-bold sm:text-xl">Coding Animation Playground</h2>
+    <p class="mb-5 text-sm text-ink-500">Pick an example, read the code, change a number, and press <strong class="text-ink-900">Run Code</strong> to see what happens.</p>
+
+    <div class="grid gap-5 lg:grid-cols-2">
+
+      <!-- Editor -->
+      <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-mist-200 sm:p-5">
+        <div class="mb-3">
+          <label for="snippet-select" class="mb-1 block text-xs font-semibold text-ink-600">Choose an example</label>
+          <select id="snippet-select"
+                  class="w-full rounded-lg border border-mist-200 bg-white px-3 py-2 text-sm font-semibold focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500">
+            <option value="ball">🏀 Bouncing Ball — gravity &amp; energy loss</option>
+            <option value="orbit">🪐 Orbiting Planets — sine &amp; cosine</option>
+            <option value="wave">🌈 Color Changing Wave — waves &amp; colour</option>
+          </select>
+        </div>
+
+        <label for="code-editor" class="mb-1 block text-xs font-semibold text-ink-600">JavaScript code (editable)</label>
+        <textarea id="code-editor" spellcheck="false" rows="16" aria-describedby="code-help"
+                  placeholder="Your animation code goes here"
+                  class="w-full resize-y rounded-xl border border-mist-200 bg-ink-900 p-3 font-mono text-[12.5px] leading-relaxed text-mist-100 focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500"></textarea>
+        <p id="code-help" class="mt-1 text-xs text-ink-500">
+          Your code gets <code class="font-mono">ctx</code> (the canvas brush), <code class="font-mono">W</code> and <code class="font-mono">H</code> (width/height),
+          and must define <code class="font-mono">draw(t)</code> — called about 60 times a second, with <code class="font-mono">t</code> in seconds.
+        </p>
+
+        <div class="mt-3 flex flex-wrap gap-2">
+          <button id="btn-run" type="button"
+                  class="rounded-lg bg-crimson-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-crimson-600 active:bg-crimson-700">
+            ▶ Run Code
+          </button>
+          <button id="btn-stop" type="button"
+                  class="rounded-lg bg-mist-100 px-4 py-2.5 text-sm font-bold text-maroon-800 ring-1 ring-mist-200 transition-colors hover:bg-mist-200">
+            ■ Stop
+          </button>
+          <button id="btn-reset" type="button"
+                  class="rounded-lg bg-mist-100 px-4 py-2.5 text-sm font-bold text-maroon-800 ring-1 ring-mist-200 transition-colors hover:bg-mist-200">
+            ↺ Reset code
+          </button>
+        </div>
+      </div>
+
+      <!-- Stage -->
+      <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-mist-200 sm:p-5">
+        <h3 class="mb-2 text-xs font-semibold text-ink-600">Result</h3>
+        <div class="overflow-hidden rounded-xl bg-mist-100 ring-1 ring-mist-200">
+          <canvas id="stage" class="block h-[320px] w-full sm:h-[420px]"
+                  role="img" aria-label="Animation output canvas"></canvas>
+        </div>
+        <p id="run-status" role="status" aria-live="polite"
+           class="mt-3 rounded-lg bg-mist-100 px-3 py-2 font-mono text-xs text-ink-600">Ready — press Run Code.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PANEL 4 — NEWS ================= -->
+  <section id="panel-news" role="tabpanel" aria-labelledby="tab-news" tabindex="0" class="panel focus:outline-none">
+
+    <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 class="text-lg font-bold sm:text-xl">Daily Scientific News Feed</h2>
+        <p class="text-sm text-ink-500">Three stories to spark a discussion. Press refresh for three more.</p>
+      </div>
+      <button id="btn-news" type="button"
+              class="rounded-lg bg-crimson-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-crimson-600 active:bg-crimson-700">
+        ↻ Refresh News
+      </button>
+    </div>
+
+    <div id="news-grid" aria-live="polite" class="grid gap-5 md:grid-cols-3"></div>
+
+    <p class="mt-5 rounded-xl bg-gold-400/15 px-4 py-3 text-xs leading-relaxed text-ink-600 ring-1 ring-gold-500/30">
+      <strong class="text-ink-900">Note for students:</strong> these stories are written as classroom examples,
+      not real reporting. Use them for practice and discussion — always check a real news source before quoting a fact.
+    </p>
+  </section>
+
+  <footer class="mt-8 text-center text-xs text-ink-500">
+    Built for classroom use · Works offline once loaded, except for fonts and styles.
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==================================================================
+     Shared helpers
+  ================================================================== */
+
+  // One number formatter for every panel, so 1/3 and 2e-9 both stay readable.
+  function fmt(n, dp) {
+    dp = (dp === undefined) ? 4 : dp;
+    if (n === null || n === undefined || Number.isNaN(n)) return '—';
+    if (!Number.isFinite(n)) return n > 0 ? '∞' : '−∞';
+    var abs = Math.abs(n);
+    if (n !== 0 && (abs >= 1e12 || abs < 1e-7)) return n.toExponential(6);
+    return String(Number(n.toFixed(dp)));
+  }
+
+  // Returns null for an empty or unparseable box, so callers can say
+  // "enter a number" instead of quietly showing NaN.
+  function num(el) {
+    var raw = el.value.trim();
+    if (raw === '') return null;
+    var v = Number(raw);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ==================================================================
+     1. Tabs
+  ================================================================== */
+
+  var TABS = ['formulas', 'calculator', 'playground', 'news'];
+  var tabButtons = TABS.map(function (k) { return $('tab-' + k); });
+  var tabPanels  = TABS.map(function (k) { return $('panel-' + k); });
+
+  var TAB_ON  = ['bg-maroon-800', 'text-white', 'shadow-sm'];
+  var TAB_OFF = ['text-ink-600', 'hover:bg-mist-100', 'hover:text-maroon-800'];
+
+  function selectTab(index, focus) {
+    tabButtons.forEach(function (btn, i) {
+      var active = i === index;
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      btn.tabIndex = active ? 0 : -1;
+      btn.classList.remove.apply(btn.classList, active ? TAB_OFF : TAB_ON);
+      btn.classList.add.apply(btn.classList, active ? TAB_ON : TAB_OFF);
+      tabPanels[i].classList.toggle('is-active', active);
+    });
+    // Leaving the playground stops the animation loop — no invisible work,
+    // no drained battery on a phone.
+    if (TABS[index] !== 'playground') stopAnimation();
+    if (focus) tabButtons[index].focus();
+  }
+
+  tabButtons.forEach(function (btn, i) {
+    btn.addEventListener('click', function () { selectTab(i, false); });
+    btn.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = (i + 1) % TABS.length;
+      else if (e.key === 'ArrowLeft') next = (i - 1 + TABS.length) % TABS.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = TABS.length - 1;
+      if (next !== null) { e.preventDefault(); selectTab(next, true); }
+    });
+  });
+
+  selectTab(0, false);
+
+  /* ==================================================================
+     2. Formulas dashboard
+  ================================================================== */
+
+  function bind(ids, fn) {
+    var els = ids.map($);
+    var run = function () { fn.apply(null, els); };
+    els.forEach(function (el) { el.addEventListener('input', run); });
+    run();
+  }
+
+  // Quadratic — covers a = 0 (not a quadratic) and a negative discriminant.
+  bind(['q-a', 'q-b', 'q-c'], function (ea, eb, ec) {
+    var out = $('q-out'), a = num(ea), b = num(eb), c = num(ec);
+    if (a === null || b === null || c === null) { out.textContent = 'Enter values for a, b and c.'; return; }
+    if (a === 0) {
+      if (b === 0) { out.textContent = 'With a = 0 and b = 0 this is not an equation in x.'; return; }
+      out.textContent = 'a = 0, so this is linear: x = ' + fmt(-c / b);
+      return;
+    }
+    var d = b * b - 4 * a * c;
+    if (d < 0) {
+      var re = fmt(-b / (2 * a)), im = fmt(Math.sqrt(-d) / (2 * a));
+      out.textContent = 'Discriminant ' + fmt(d) + ' — no real roots. x = ' + re + ' ± ' + im + 'i';
+    } else if (d === 0) {
+      out.textContent = 'Discriminant 0 — one repeated root: x = ' + fmt(-b / (2 * a));
+    } else {
+      var r = Math.sqrt(d);
+      out.textContent = 'x₁ = ' + fmt((-b + r) / (2 * a)) + '   ·   x₂ = ' + fmt((-b - r) / (2 * a));
+    }
+  });
+
+  bind(['g-r'], function (er) {
+    var out = $('g-out'), r = num(er);
+    if (r === null) { out.textContent = 'Enter a radius.'; return; }
+    if (r < 0) { out.textContent = 'A radius cannot be negative.'; return; }
+    out.textContent = 'Area = ' + fmt(Math.PI * r * r, 3) + ' cm²   ·   Circumference = ' + fmt(2 * Math.PI * r, 3) + ' cm';
+  });
+
+  bind(['c-a', 'c-n', 'c-x'], function (ea, en, ex) {
+    var out = $('c-out'), a = num(ea), n = num(en), x = num(ex);
+    if (a === null || n === null || x === null) { out.textContent = 'Enter a, n and x.'; return; }
+    var slope = a * n * Math.pow(x, n - 1);
+    var derivative = "f′(x) = " + fmt(a * n) + '·x^' + fmt(n - 1);
+    if (!Number.isFinite(slope)) {
+      out.textContent = derivative + ' — undefined at x = ' + fmt(x) + '.';
+      return;
+    }
+    out.textContent = derivative + '   ·   slope at x = ' + fmt(x) + ' is ' + fmt(slope);
+  });
+
+  bind(['p-m', 'p-a'], function (em, ea) {
+    var out = $('p-out'), m = num(em), a = num(ea);
+    if (m === null || a === null) { out.textContent = 'Enter a mass and an acceleration.'; return; }
+    if (m < 0) { out.textContent = 'Mass cannot be negative.'; return; }
+    out.textContent = 'Force = ' + fmt(m * a, 3) + ' N   (' + fmt(m) + ' kg × ' + fmt(a) + ' m/s²)';
+  });
+
+  /* ==================================================================
+     3. Scientific calculator
+     A real tokenizer + shunting-yard parser rather than eval(), so a typo
+     produces a helpful message and no page code can ever be run from the
+     expression box.
+  ================================================================== */
+
+  var useDegrees = true;
+  var lastAnswer = 0;
+
+  var toRad = function (x) { return useDegrees ? x * Math.PI / 180 : x; };
+  var fromRad = function (x) { return useDegrees ? x * 180 / Math.PI : x; };
+
+  var FUNCS = {
+    sin:  function (x) { return Math.sin(toRad(x)); },
+    cos:  function (x) { return Math.cos(toRad(x)); },
+    tan:  function (x) { return Math.tan(toRad(x)); },
+    asin: function (x) { return fromRad(Math.asin(x)); },
+    acos: function (x) { return fromRad(Math.acos(x)); },
+    atan: function (x) { return fromRad(Math.atan(x)); },
+    sqrt: Math.sqrt,
+    ln:   Math.log,
+    log:  Math.log10,
+    abs:  Math.abs,
+    exp:  Math.exp
+  };
+
+  var OPS = {
+    '+': { prec: 1, right: false, fn: function (a, b) { return a + b; } },
+    '-': { prec: 1, right: false, fn: function (a, b) { return a - b; } },
+    '*': { prec: 2, right: false, fn: function (a, b) { return a * b; } },
+    '/': { prec: 2, right: false, fn: function (a, b) { return a / b; } },
+    'mod': { prec: 2, right: false, fn: function (a, b) { return a % b; } },
+    '^': { prec: 4, right: true,  fn: function (a, b) { return Math.pow(a, b); } },
+    'u-': { prec: 3, right: true, unary: true, fn: function (a) { return -a; } }
+  };
+
+  function tokenize(src) {
+    var s = src
+      .replace(/√/g, 'sqrt').replace(/π/g, 'pi')
+      .replace(/×/g, '*').replace(/÷/g, '/')
+      .replace(/−/g, '-').replace(/,/g, '');
+    var out = [], i = 0;
+
+    while (i < s.length) {
+      var ch = s[i];
+      if (/\s/.test(ch)) { i++; continue; }
+
+      if (/[0-9.]/.test(ch)) {
+        var j = i;
+        while (j < s.length && /[0-9.]/.test(s[j])) j++;
+        var lit = s.slice(i, j);
+        if ((lit.match(/\./g) || []).length > 1) throw new Error('"' + lit + '" is not a number');
+        out.push({ t: 'num', v: parseFloat(lit) });
+        i = j; continue;
+      }
+
+      if (/[a-z]/i.test(ch)) {
+        var k = i;
+        while (k < s.length && /[a-z0-9]/i.test(s[k])) k++;
+        var name = s.slice(i, k).toLowerCase();
+        i = k;
+        if (name === 'pi') out.push({ t: 'num', v: Math.PI });
+        else if (name === 'e') out.push({ t: 'num', v: Math.E });
+        else if (name === 'ans') out.push({ t: 'num', v: lastAnswer });
+        else if (name === 'mod') out.push({ t: 'op', v: 'mod' });
+        else if (FUNCS[name]) out.push({ t: 'fn', v: name });
+        else throw new Error('I do not know "' + name + '"');
+        continue;
+      }
+
+      if ('+-*/^'.indexOf(ch) !== -1) { out.push({ t: 'op', v: ch }); i++; continue; }
+      if (ch === '(' || ch === ')') { out.push({ t: ch }); i++; continue; }
+      throw new Error('Unexpected character "' + ch + '"');
+    }
+    return out;
+  }
+
+  // "2π", "3(4+1)" and "(1+2)(3)" all mean multiplication to a student.
+  function insertImplicitMultiply(tokens) {
+    var out = [];
+    for (var i = 0; i < tokens.length; i++) {
+      var prev = out[out.length - 1], cur = tokens[i];
+      if (prev) {
+        var prevEnds = prev.t === 'num' || prev.t === ')';
+        var curStarts = cur.t === 'num' || cur.t === 'fn' || cur.t === '(';
+        if (prevEnds && curStarts) out.push({ t: 'op', v: '*' });
+      }
+      out.push(cur);
+    }
+    return out;
+  }
+
+  function toRPN(tokens) {
+    var output = [], stack = [], prev = null;
+
+    for (var i = 0; i < tokens.length; i++) {
+      var tk = tokens[i];
+
+      if (tk.t === 'num') { output.push(tk); }
+      else if (tk.t === 'fn') { stack.push(tk); }
+      else if (tk.t === 'op') {
+        // A '-' with nothing usable before it is negation, not subtraction.
+        var isUnary = (tk.v === '-' || tk.v === '+') &&
+                      (prev === null || prev.t === 'op' || prev.t === '(' || prev.t === 'fn');
+        var name = isUnary ? (tk.v === '-' ? 'u-' : null) : tk.v;
+        if (name === null) { prev = tk; continue; }   // a leading '+' is a no-op
+
+        var o1 = OPS[name];
+        while (stack.length) {
+          var top = stack[stack.length - 1];
+          if (top.t === 'fn') { output.push(stack.pop()); continue; }
+          if (top.t !== 'op') break;
+          var o2 = OPS[top.v];
+          if (o2.prec > o1.prec || (o2.prec === o1.prec && !o1.right)) output.push(stack.pop());
+          else break;
+        }
+        stack.push({ t: 'op', v: name });
+      }
+      else if (tk.t === '(') { stack.push(tk); }
+      else if (tk.t === ')') {
+        var found = false;
+        while (stack.length) {
+          var t2 = stack.pop();
+          if (t2.t === '(') { found = true; break; }
+          output.push(t2);
+        }
+        if (!found) throw new Error('There is a ")" without a matching "("');
+        if (stack.length && stack[stack.length - 1].t === 'fn') output.push(stack.pop());
+      }
+      prev = tk;
+    }
+
+    while (stack.length) {
+      var rest = stack.pop();
+      if (rest.t === '(') throw new Error('There is a "(" that was never closed');
+      output.push(rest);
+    }
+    return output;
+  }
+
+  function evalRPN(rpn) {
+    var st = [];
+    for (var i = 0; i < rpn.length; i++) {
+      var tk = rpn[i];
+      if (tk.t === 'num') { st.push(tk.v); continue; }
+      if (tk.t === 'fn') {
+        if (!st.length) throw new Error(tk.v + '() needs a number inside it');
+        st.push(FUNCS[tk.v](st.pop()));
+        continue;
+      }
+      var op = OPS[tk.v];
+      if (op.unary) {
+        if (!st.length) throw new Error('Missing a number for "−"');
+        st.push(op.fn(st.pop()));
+      } else {
+        if (st.length < 2) throw new Error('Missing a number around "' + tk.v + '"');
+        var b = st.pop(), a = st.pop();
+        st.push(op.fn(a, b));
+      }
+    }
+    if (st.length !== 1) throw new Error('That expression is incomplete');
+    return st[0];
+  }
+
+  function calculate(src) {
+    if (!src.trim()) return null;
+    return evalRPN(toRPN(insertImplicitMultiply(tokenize(src))));
+  }
+
+  var calcInput = $('calc-input');
+  var calcOut = $('calc-out');
+  var calcAngle = $('calc-angle');
+
+  function showResult() {
+    var src = calcInput.value;
+    calcOut.classList.remove('text-gold-400', 'text-white');
+    if (!src.trim()) { calcOut.classList.add('text-white'); calcOut.textContent = '0'; return; }
+    try {
+      var v = calculate(src);
+      if (Number.isNaN(v)) throw new Error('That is not a valid calculation');
+      lastAnswer = v;
+      calcOut.classList.add('text-white');
+      calcOut.textContent = fmt(v, 10);
+    } catch (err) {
+      calcOut.classList.add('text-gold-400');
+      calcOut.textContent = err.message;
+    }
+  }
+
+  // Live preview while typing, and Enter commits the answer as "Ans".
+  calcInput.addEventListener('input', showResult);
+  calcInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); showResult(); }
+  });
+
+  calcAngle.addEventListener('click', function () {
+    useDegrees = !useDegrees;
+    calcAngle.textContent = 'Angle: ' + (useDegrees ? 'DEG' : 'RAD');
+    calcAngle.setAttribute('aria-pressed', useDegrees ? 'false' : 'true');
+    showResult();
+  });
+
+  function insert(text) {
+    var start = calcInput.selectionStart, end = calcInput.selectionEnd;
+    if (start === null) { calcInput.value += text; }
+    else {
+      calcInput.value = calcInput.value.slice(0, start) + text + calcInput.value.slice(end);
+      var pos = start + text.length;
+      calcInput.setSelectionRange(pos, pos);
+    }
+    calcInput.focus();
+    showResult();
+  }
+
+  var KEYS = [
+    ['sin', 'sin(', 'fn'], ['cos', 'cos(', 'fn'], ['tan', 'tan(', 'fn'], ['C', 'clear', 'warn'], ['DEL', 'del', 'warn'],
+    ['ln', 'ln(', 'fn'],  ['log', 'log(', 'fn'], ['√', '√(', 'fn'],     ['xʸ', '^', 'fn'],      ['÷', '÷', 'op'],
+    ['7', '7', 'num'],    ['8', '8', 'num'],     ['9', '9', 'num'],     ['π', 'π', 'fn'],       ['×', '×', 'op'],
+    ['4', '4', 'num'],    ['5', '5', 'num'],     ['6', '6', 'num'],     ['e', 'e', 'fn'],       ['−', '-', 'op'],
+    ['1', '1', 'num'],    ['2', '2', 'num'],     ['3', '3', 'num'],     ['(', '(', 'op'],       ['+', '+', 'op'],
+    ['0', '0', 'num'],    ['.', '.', 'num'],     ['Ans', 'ans', 'fn'],  [')', ')', 'op'],       ['=', 'equals', 'eq']
+  ];
+
+  var KEY_STYLE = {
+    num:  'bg-white text-ink-900 ring-1 ring-mist-200 hover:bg-mist-100',
+    op:   'bg-mist-100 text-maroon-800 ring-1 ring-mist-200 hover:bg-mist-200',
+    fn:   'bg-maroon-50 text-maroon-800 ring-1 ring-maroon-100 hover:bg-maroon-100',
+    warn: 'bg-crimson-50 text-crimson-700 ring-1 ring-crimson-100 hover:bg-crimson-100',
+    eq:   'bg-crimson-500 text-white hover:bg-crimson-600'
+  };
+
+  var keypad = $('calc-keys');
+  KEYS.forEach(function (k) {
+    var label = k[0], action = k[1], kind = k[2];
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = label;
+    b.className = 'kbd rounded-lg py-3 text-sm font-bold transition-colors ' + KEY_STYLE[kind];
+    b.setAttribute('aria-label',
+      label === 'C' ? 'Clear' :
+      label === 'DEL' ? 'Delete last character' :
+      label === 'xʸ' ? 'Power' :
+      label === '√' ? 'Square root' :
+      label === 'Ans' ? 'Previous answer' : label);
+
+    b.addEventListener('click', function () {
+      if (action === 'clear') { calcInput.value = ''; calcInput.focus(); showResult(); return; }
+      if (action === 'del') {
+        var s = calcInput.selectionStart, e2 = calcInput.selectionEnd;
+        if (s === e2 && s > 0) {
+          calcInput.value = calcInput.value.slice(0, s - 1) + calcInput.value.slice(s);
+          calcInput.setSelectionRange(s - 1, s - 1);
+        } else if (s !== e2) {
+          calcInput.value = calcInput.value.slice(0, s) + calcInput.value.slice(e2);
+          calcInput.setSelectionRange(s, s);
+        }
+        calcInput.focus(); showResult(); return;
+      }
+      if (action === 'equals') { showResult(); calcInput.focus(); return; }
+      insert(action);
+    });
+    keypad.appendChild(b);
+  });
+
+  showResult();
+
+  /* ==================================================================
+     4. Coding animation playground
+  ================================================================== */
+
+  var SNIPPETS = {
+    ball:
+'// BOUNCING BALL\n' +
+'// Gravity pulls the ball down every frame, and each bounce keeps\n' +
+'// only 80% of the speed — that is why it slowly settles.\n' +
+'// Try changing g to 0.1, or bounce to 1.\n' +
+'\n' +
+'let x = 60, y = 40;      // position, in pixels\n' +
+'let vx = 3.2, vy = 0;    // velocity, in pixels per frame\n' +
+'const g = 0.35;          // gravity\n' +
+'const bounce = 0.8;      // energy kept after hitting the floor\n' +
+'const r = 18;            // radius of the ball\n' +
+'\n' +
+'function draw(t) {\n' +
+'  ctx.clearRect(0, 0, W, H);\n' +
+'\n' +
+'  vy += g;               // gravity changes the speed\n' +
+'  x += vx; y += vy;      // speed changes the position\n' +
+'\n' +
+'  if (x < r)     { x = r;     vx = -vx; }\n' +
+'  if (x > W - r) { x = W - r; vx = -vx; }\n' +
+'  if (y > H - r) { y = H - r; vy = -vy * bounce; }\n' +
+'\n' +
+'  ctx.strokeStyle = "#e5e6ef";\n' +
+'  ctx.beginPath(); ctx.moveTo(0, H - 1); ctx.lineTo(W, H - 1); ctx.stroke();\n' +
+'\n' +
+'  ctx.fillStyle = "#c1121f";\n' +
+'  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();\n' +
+'}\n',
+
+    orbit:
+'// ORBITING PLANETS\n' +
+'// Trigonometry in action: cos gives the x position and sin gives\n' +
+'// the y position for any angle. Change dist or speed and re-run.\n' +
+'\n' +
+'const planets = [\n' +
+'  { dist: 55,  speed: 1.6, size: 6, color: "#ffd306" },\n' +
+'  { dist: 100, speed: 1.0, size: 9, color: "#c1121f" },\n' +
+'  { dist: 145, speed: 0.6, size: 7, color: "#4a4a53" }\n' +
+'];\n' +
+'\n' +
+'function draw(t) {\n' +
+'  ctx.clearRect(0, 0, W, H);\n' +
+'  const cx = W / 2, cy = H / 2;\n' +
+'\n' +
+'  ctx.fillStyle = "#7f0000";\n' +
+'  ctx.beginPath(); ctx.arc(cx, cy, 16, 0, Math.PI * 2); ctx.fill();\n' +
+'\n' +
+'  for (const p of planets) {\n' +
+'    ctx.strokeStyle = "rgba(0,0,0,0.10)";\n' +
+'    ctx.beginPath(); ctx.arc(cx, cy, p.dist, 0, Math.PI * 2); ctx.stroke();\n' +
+'\n' +
+'    const angle = t * p.speed;\n' +
+'    const x = cx + Math.cos(angle) * p.dist;\n' +
+'    const y = cy + Math.sin(angle) * p.dist;\n' +
+'\n' +
+'    ctx.fillStyle = p.color;\n' +
+'    ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI * 2); ctx.fill();\n' +
+'  }\n' +
+'}\n',
+
+    wave:
+'// COLOUR CHANGING WAVE\n' +
+'// Four sine waves drawn on top of each other. The hue keeps\n' +
+'// climbing with time, so the colours cycle through the rainbow.\n' +
+'// Try changing 55 (the wavelength) or 1.5 (the speed).\n' +
+'\n' +
+'function draw(t) {\n' +
+'  ctx.clearRect(0, 0, W, H);\n' +
+'  ctx.lineWidth = 3;\n' +
+'\n' +
+'  for (let layer = 0; layer < 4; layer++) {\n' +
+'    const hue = (t * 40 + layer * 45) % 360;\n' +
+'    ctx.strokeStyle = "hsl(" + hue + ", 75%, 55%)";\n' +
+'    ctx.beginPath();\n' +
+'\n' +
+'    for (let x = 0; x <= W; x += 4) {\n' +
+'      const y = H / 2 + Math.sin(x / 55 + t * 1.5 + layer) * (28 + layer * 12);\n' +
+'      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);\n' +
+'    }\n' +
+'    ctx.stroke();\n' +
+'  }\n' +
+'}\n'
+  };
+
+  var canvas = $('stage');
+  var ctx = canvas.getContext('2d');
+  var editor = $('code-editor');
+  var picker = $('snippet-select');
+  var status = $('run-status');
+  var rafId = null;
+  var cssW = 0, cssH = 0;
+
+  function setStatus(msg, kind) {
+    status.textContent = msg;
+    status.className = 'mt-3 rounded-lg px-3 py-2 font-mono text-xs ' + (
+      kind === 'error' ? 'bg-crimson-50 text-crimson-700 ring-1 ring-crimson-100' :
+      kind === 'ok'    ? 'bg-gold-400/20 text-ink-900 ring-1 ring-gold-500/40' :
+                         'bg-mist-100 text-ink-600'
+    );
+  }
+
+  // Match the backing store to the device pixel ratio so lines stay crisp
+  // on phones and high-DPI laptops.
+  function sizeCanvas() {
+    var dpr = window.devicePixelRatio || 1;
+    var rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    cssW = Math.round(rect.width);
+    cssH = Math.round(rect.height);
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () { sizeCanvas(); }).observe(canvas);
+  } else {
+    window.addEventListener('resize', sizeCanvas);
+  }
+  sizeCanvas();
+
+  function stopAnimation() {
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  function runCode() {
+    stopAnimation();
+    sizeCanvas();
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    var draw;
+    try {
+      // The snippet body runs once to set up its variables, then hands back
+      // its draw() so per-frame state survives between frames.
+      var factory = new Function('ctx', 'W', 'H',
+        '"use strict";\n' + editor.value + '\n;return typeof draw === "function" ? draw : null;');
+      draw = factory(ctx, cssW, cssH);
+    } catch (err) {
+      setStatus('Error in your code — ' + err.message, 'error');
+      return;
+    }
+
+    if (!draw) {
+      setStatus('Your code needs a function called draw(t).', 'error');
+      return;
+    }
+
+    setStatus('Running… press Stop to pause.', 'ok');
+    var start = performance.now();
+
+    function frame(now) {
+      try {
+        draw((now - start) / 1000);
+      } catch (err) {
+        stopAnimation();
+        setStatus('Stopped — ' + err.message, 'error');
+        return;
+      }
+      rafId = requestAnimationFrame(frame);
+    }
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function loadSnippet() {
+    stopAnimation();
+    editor.value = SNIPPETS[picker.value];
+    ctx.clearRect(0, 0, cssW, cssH);
+    setStatus('Example loaded — press Run Code.');
+  }
+
+  picker.addEventListener('change', loadSnippet);
+  $('btn-run').addEventListener('click', runCode);
+  $('btn-reset').addEventListener('click', loadSnippet);
+  $('btn-stop').addEventListener('click', function () {
+    stopAnimation();
+    setStatus('Stopped.');
+  });
+
+  // A hidden tab or a backgrounded window should not keep animating.
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { stopAnimation(); setStatus('Paused — press Run Code to continue.'); }
+  });
+
+  loadSnippet();
+
+  /* ==================================================================
+     5. Science news feed  (illustrative classroom content, not reporting)
+  ================================================================== */
+
+  var STORIES = [
+    { tag: 'Space Exploration', icon: '🛰️', title: 'Rover Maps a Frozen Riverbed',
+      body: 'A study rover traces mineral bands along a dry channel, the kind of pattern flowing water leaves behind on Earth.',
+      read: '3 min read' },
+    { tag: 'Artificial Intelligence', icon: '🤖', title: 'A Model That Shows Its Working',
+      body: 'Researchers train a maths tutor that writes out every step, so a student can spot exactly where a solution went wrong.',
+      read: '4 min read' },
+    { tag: 'Environmental Science', icon: '🌱', title: 'Mangroves Outperform Concrete Walls',
+      body: 'A five-year coastal study finds replanted mangrove belts absorb more storm energy than the sea walls beside them.',
+      read: '3 min read' },
+    { tag: 'Physics', icon: '⚛️', title: 'Cooling Atoms to Almost Nothing',
+      body: 'A lab reaches a few billionths of a degree above absolute zero, slowing atoms enough to photograph them one by one.',
+      read: '5 min read' },
+    { tag: 'Biology', icon: '🧬', title: 'Coral Larvae Follow Sound',
+      body: 'Young coral swim towards recordings of a healthy reef, hinting at a cheap way to guide them to damaged patches.',
+      read: '3 min read' },
+    { tag: 'Mathematics', icon: '🔢', title: 'A New Pattern in Prime Gaps',
+      body: 'Students working with a university group notice a repeating rhythm in the spaces between large prime numbers.',
+      read: '6 min read' },
+    { tag: 'Renewable Energy', icon: '⚡', title: 'Solar Panels That Like the Heat',
+      body: 'A new coating keeps panels cooler at midday, recovering the efficiency usually lost on the hottest afternoons.',
+      read: '4 min read' },
+    { tag: 'Robotics', icon: '🦾', title: 'A Robot Hand Learns Chopsticks',
+      body: 'Trained on ten thousand attempts, a gripper learns the fine balance needed to pick up a single grain of rice.',
+      read: '4 min read' },
+    { tag: 'Astronomy', icon: '🔭', title: 'Two Moons Where One Was Expected',
+      body: 'A long-exposure survey of a distant gas giant resolves a faint second companion sharing the same orbit.',
+      read: '3 min read' }
+  ];
+
+  var order = [];
+  var cursor = 0;
+  var onScreen = [];
+
+  function reshuffle() {
+    order = STORIES.map(function (_, i) { return i; });
+    for (var i = order.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
+    }
+    // A fresh shuffle could otherwise deal back a card that is still on
+    // screen, so push any of those out of the first three slots.
+    for (var a = 0; a < 3 && a < order.length; a++) {
+      if (onScreen.indexOf(order[a]) === -1) continue;
+      for (var b = 3; b < order.length; b++) {
+        if (onScreen.indexOf(order[b]) !== -1) continue;
+        var swap = order[a]; order[a] = order[b]; order[b] = swap;
+        break;
+      }
+    }
+    cursor = 0;
+  }
+
+  // Walking a shuffled list three at a time guarantees a genuinely new set
+  // on every press, instead of random picks that might repeat.
+  function nextThree() {
+    if (!order.length || cursor + 3 > order.length) reshuffle();
+    onScreen = order.slice(cursor, cursor + 3);
+    cursor += 3;
+    return onScreen.map(function (i) { return STORIES[i]; });
+  }
+
+  var newsGrid = $('news-grid');
+
+  function renderNews() {
+    var today = new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+    newsGrid.innerHTML = '';
+    nextThree().forEach(function (s) {
+      var card = document.createElement('article');
+      card.className = 'card flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-mist-200 hover:shadow-md';
+      card.innerHTML =
+        '<div class="mb-3 flex items-center gap-2">' +
+          '<span aria-hidden="true" class="text-xl">' + s.icon + '</span>' +
+          '<span class="rounded-lg bg-crimson-50 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-crimson-700"></span>' +
+        '</div>' +
+        '<h3 class="mb-2 text-base font-bold leading-snug"></h3>' +
+        '<p class="mb-4 flex-1 text-sm leading-relaxed text-ink-600"></p>' +
+        '<div class="flex items-center justify-between border-t border-mist-100 pt-3 text-xs text-ink-500">' +
+          '<span></span><span></span>' +
+        '</div>';
+      // Text set through textContent, never through innerHTML, so a future
+      // story containing < or & can never turn into markup.
+      card.querySelector('span.rounded-lg').textContent = s.tag;
+      card.querySelector('h3').textContent = s.title;
+      card.querySelector('p').textContent = s.body;
+      var meta = card.querySelectorAll('div.flex.items-center.justify-between span');
+      meta[0].textContent = today;
+      meta[1].textContent = s.read;
+      newsGrid.appendChild(card);
+    });
+  }
+
+  $('btn-news').addEventListener('click', renderNews);
+  reshuffle();
+  renderNews();
+
+  /* ==================================================================
+     6. Height reporting, for when this page is embedded in an iframe
+
+     The host page listens for these messages and resizes the frame to
+     match, so a student never gets a scrollbar inside a scrollbar. It
+     posts nothing but a number, and does nothing at all when the page
+     is opened directly.
+  ================================================================== */
+
+  if (window.parent !== window) {
+    var lastHeight = 0;
+
+    var measure = function () {
+      // scrollHeight, not getBoundingClientRect(): the latter reports the
+      // height the frame already gives us, so the page would lock itself to
+      // whatever it was first sized at and scroll internally forever.
+      var body = document.body ? document.body.scrollHeight : 0;
+      if (body < 50) return 0; // nothing laid out yet — not worth reporting
+      return Math.ceil(body + 16); // plus the default body margin, top and bottom
+    };
+
+    var reportHeight = function () {
+      var h = measure();
+      // Ignore a difference of a pixel or two: sub-pixel rounding as the frame
+      // settles would otherwise bounce the host page back and forth forever.
+      if (!h || Math.abs(h - lastHeight) < 4) return;
+      lastHeight = h;
+      // Only a height is sent, and the host verifies the sending frame before
+      // trusting it, so "*" leaks nothing worth protecting.
+      window.parent.postMessage({ type: 'ai-hub-height', height: h }, '*');
+    };
+
+    // Polling is the safety net, and it is the part that actually works on a
+    // cold load: the first measurement runs before the Tailwind CDN has
+    // styled anything, when the body still measures zero, and a ResizeObserver
+    // registered at that moment does not reliably fire again afterwards.
+    // Half a second is imperceptible to a student and costs one layout read.
+    window.setInterval(reportHeight, 500);
+
+    // Chrome throttles timers and layout in a cross-origin frame that is
+    // partly scrolled out of view, so the interval alone can lag a second or
+    // two behind a tab switch. A click is user-initiated, which is exactly
+    // when the frame is awake — measure then, and again once the panel's
+    // entrance transition has finished.
+    document.addEventListener('click', function () {
+      reportHeight();
+      window.setTimeout(reportHeight, 350);
+    }, true);
+
+    // The observer is still worth having for instant response when a student
+    // switches tabs or opens the space explainer.
+    if (window.ResizeObserver) new ResizeObserver(reportHeight).observe(document.body);
+    window.addEventListener('load', reportHeight);
+    window.addEventListener('resize', reportHeight);
+  }
+})();
+</script>
+</body>
+</html>

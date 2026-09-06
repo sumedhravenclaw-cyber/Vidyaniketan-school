@@ -46,6 +46,15 @@ export function buildNavigation(locale: string, dict: Dictionary): NavItem[] {
     },
     { label: n.admissions, href: p("/admissions") },
     { label: n.circulars, href: p("/circulars") },
+    {
+      label: n.explore,
+      href: p("/explore"),
+      children: [
+        { label: n.allExplore, href: p("/explore") },
+        { label: n.climateTracker, href: p("/explore/climate-tracker") },
+        { label: n.aiHub, href: p("/explore/ai-hub") },
+      ],
+    },
     { label: n.gallery, href: p("/gallery") },
     { label: n.contact, href: p("/contact") },
   ];
